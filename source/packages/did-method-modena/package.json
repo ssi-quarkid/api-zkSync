@@ -1,0 +1,49 @@
+{
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build ",
+    "pretest": "docker-compose up -d mongo ganache ipfs",
+    "test": "tsdx test --runInBand --detectOpenHandles ",
+    "lint": "tsdx lint src ",
+    "lint:fix": "tsdx lint src --fix ",
+    "prepare": "tsdx build "
+  },
+  "name": "@extrimian-sidetree/did-method-modena",
+  "author": "Brian Desiderio",
+  "module": "dist/did-method-modena.esm.js",
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^7.0.8",
+    "husky": "^7.0.4",
+    "size-limit": "^7.0.8",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "@decentralized-identity/sidetree": "^1.0.5",
+    "@extrimian-sidetree/cas": "1.0.0",
+    "@extrimian-sidetree/cas-ipfs": "1.0.0",
+    "@extrimian-sidetree/did-method": "1.0.0",
+    "@extrimian-sidetree/ethereum": "1.0.0",
+    "@extrimian-sidetree/rsk": "1.0.0",
+    "@extrimian-sidetree/zksync": "1.0.0",
+    "@extrimian-sidetree/common": "1.0.0",
+    "@truffle/hdwallet-provider": "^1.4.0",
+    "jest-environment-node": "^27.2.5",
+    "mongodb": "^3.6.9",
+    "web3": "^1.7.1",
+    "ethers": "^5.7.0",
+    "zksync-web3": "^0.13.4"
+  }
+}

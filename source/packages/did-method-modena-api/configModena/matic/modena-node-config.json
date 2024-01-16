@@ -1,0 +1,17 @@
+
+{
+  "contentAddressableStoreServiceUri": "http://127.0.0.1:5001",
+  "databaseName": "element-test-matic-2",
+  "didMethodName": "elem:rsk",
+  "ethereumRpcUrl": "https://matic.getblock.io/testnet/?api_key=a5d11c9b-60c6-4868-ba34-10e2fc3bcec0",
+  "mongoDbConnectionString": "mongodb://localhost:27017/",
+  "batchingIntervalInSeconds": 5,
+  "observingIntervalInSeconds": 5,
+  "maxConcurrentDownloads": 20,
+  "versions": [
+    {
+      "startingBlockchainTime": 0,
+      "version": "latest"
+    }
+  ]
+}

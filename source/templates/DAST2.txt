@@ -1,0 +1,108 @@
+,
+          html = Defiant.render('dast_template', data);
+        
+        $('#output').append(html);
+      }//]]> 
+    </script>
+	<style>
+		table {
+		 margin-left: 5%;
+		 width:90%;
+		}
+		table, th, td {
+		 border: 1px solid black;
+		 border-collapse: collapse;
+		 padding: 15px;
+                 text-align: left;
+		}
+		tr:nth-child(even) {
+		 background-color: #dddddd;
+		}
+		</style>
+	</style>
+  </head>
+  <body>
+    <div align="center">
+      <img src="https://asijira-confluence.buenosaires.gob.ar/download/attachments/59277756/cabecera.jpg?api=v2">
+    </div>
+    <!-- Defiant template -->
+    <script type="defiant/xsl-template">
+      <xsl:template name="dast_template">
+		
+                <h1 style="text-align:center; color:rgb(66, 82, 113);">PROYECTO:NombreProyecto</h1>
+		<h1 style="text-align:center; color:rgb(66, 82, 113);">REPORTE DE DAST</h1>
+		<br/>
+		<xsl:variable name="counttotal">
+			<xsl:value-of select="count(//site//alerts)" />
+		</xsl:variable>
+                <xsl:variable name="countcritical">
+			<xsl:value-of select="count(//site//alerts [riskcode = '4'])" />
+		</xsl:variable>
+                <xsl:variable name="counthigh">
+			<xsl:value-of select="count(//site//alerts [riskcode = '3'])" />
+		</xsl:variable>
+                <xsl:variable name="countmedium">
+			<xsl:value-of select="count(//site//alerts [riskcode = '2'])" />
+		</xsl:variable>
+                <xsl:variable name="countlow">
+			<xsl:value-of select="count(//site//alerts [riskcode = '1'])" />
+		</xsl:variable>
+                <xsl:variable name="countinformational">
+			<xsl:value-of select="count(//site//alerts [riskcode = '0'])" />
+		</xsl:variable>
+
+		<table>
+			<tr>
+				<th style="text-align:left;">TIPO DE VULNERABILIDADES (Por Severidad)</th>
+				<th style="text-align:left;">TOTAL DE VULNERABILIDADES</th>
+			</tr>
+                        <tr>
+                               <td>Critical</td>
+                               <td><xsl:value-of select="$countcritical" /></td>
+                        </tr>
+                        <tr>
+                               <td>High</td>
+                               <td><xsl:value-of select="$counthigh" /></td>
+                        </tr>
+                        <tr> 
+                               <td>Medium</td>
+                               <td><xsl:value-of select="$countmedium" /></td>
+                        </tr>
+                        <tr> 
+                               <td>Low</td>
+                               <td><xsl:value-of select="$countlow" /></td>
+                        </tr>
+                        <tr>
+                               <td>Informational</td>
+                               <td><xsl:value-of select="$countinformational" /></td>
+                        </tr>
+                        <tr>
+				<th>TOTAL</th>
+				<th><xsl:value-of select="$counttotal" /></th>
+			</tr>
+		</table>
+
+                <hr/>
+		<table border="1">
+		<tr><th>SEVERIDAD</th><th>NOMBRE</th><th>COUNT</th></tr>
+          <xsl:for-each select="//site//alerts"> 
+			  <tr>
+				<td>
+				  <xsl:value-of select="riskdesc" />
+				</td>
+                                <td>
+				  <xsl:value-of select="name" />
+				</td>
+				<td>  
+				 <xsl:value-of select="count" /> 
+				</td>   
+                                
+                                 
+			  </tr>
+          </xsl:for-each>
+		</table>
+      </xsl:template>
+    </script>
+    <div id="output"></div>
+  </body>
+</html>

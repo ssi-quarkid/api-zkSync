@@ -1,0 +1,19 @@
+{
+  "packages": [
+    "packages/cas",
+    "packages/cas-ipfs",
+    "packages/common",
+    "packages/core",
+    "packages/db",
+    "packages/did-method",
+    "packages/ledger",
+    "packages/ledger-ethereum",
+    "packages/ledger-rsk",
+    "packages/ledger-zksync",
+    "packages/did-method-modena",
+    "packages/did-method-modena-api"
+  ],
+  "version": "1.0.0",
+  "npmClient": "npm"
+
+}

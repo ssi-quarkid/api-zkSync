@@ -1,0 +1,18 @@
+{
+  "contentAddressableStoreServiceUri": "http://20.121.1.184:5001/",
+  "databaseName": "modena-zksync",
+  "didMethodName": "modena:zksync",
+  "rpcUrl": "https://zksync2-testnet.zksync.dev",
+  "modenaAnchorContract":"0xE7951D5e91Aee502507A32C97B6bf77033bb29E7",
+  "mongoDbConnectionString": "mongodb://localhost:27017/",
+  "batchingIntervalInSeconds": 10,
+  "observingIntervalInSeconds": 5,
+  "maxConcurrentDownloads": 20,
+  "ledgerType": "zksync",
+  "versions": [
+    {
+      "startingBlockchainTime": 2652485,
+      "version": "latest"
+    }
+  ]
+}

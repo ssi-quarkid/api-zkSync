@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+    modena:
+        container_name: modena-composed
+        build:
+          context: .
+          dockerfile: Dockerfile
+        extra_hosts:
+            - host.docker.internal:host-gateway
+        ports: 
+            - 6900:3000 #MODENA API port
+        environment:
+            - DID_METHOD_NAME=modena:matic
+            - CONTENT_ADDRESSABLE_STORE_SERVICE_URI=http://20.121.1.184:5001/
+            - DATABASE_NAME=modena-docker-2
+            - RPC_URL=https://matic.getblock.io/testnet/?api_key=a5d11c9b-60c6-4868-ba34-10e2fc3bcec0
+            - MONGO_DB_CONNECTION_STRING=mongodb://host.docker.internal:27017
+            - MAX_CONCURRENT_DOWNLOADS=20
+            - OBSERVING_INTERVAL_IN_SECONDS=5
+            - BATCHING_INTERVAL_IN_SECONDS=15
+            - STARTING_BLOCKCHAIN_TIME=0
+            - BLOCKCHAIN_VERSION=latest
+            - MODENA_ANCHOR_CONTRACT=0x1F6e04694053fea1dCb322Be0C0a70709e9fe7Bb
+            - WALLET_PRIVATE_KEY=0x6faf02482a23979c7cace27a1c6fcfdbf92a9c5278d2662d917f5a232ee1a80bS
+            - LEDGER_TYPE=eth

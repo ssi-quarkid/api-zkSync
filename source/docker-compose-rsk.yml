@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+    modena:
+        container_name: modena-composed
+        build:
+          context: .
+          dockerfile: Dockerfile
+        extra_hosts:
+            - host.docker.internal:host-gateway
+        ports: 
+            - 6900:3000 #MODENA API port
+        environment:
+            - DID_METHOD_NAME=modena:rsk
+            - CONTENT_ADDRESSABLE_STORE_SERVICE_URI=http://20.121.1.184:5001/
+            - DATABASE_NAME=modena-docker-rsk
+            - RPC_URL=https://saas.extrimian.com/didethrrsk0x2f5069C52186Bc8Df3834c1E1C73577930d7bF94/8o6xrFSAZNpzNY7J/rsk?apikey=o8gzq91FuBSFxE5YfumlVal74P2cRhQ6
+            - MONGO_DB_CONNECTION_STRING=mongodb://host.docker.internal:27017
+            - MAX_CONCURRENT_DOWNLOADS=20
+            - OBSERVING_INTERVAL_IN_SECONDS=30
+            - BATCHING_INTERVAL_IN_SECONDS=60
+            - STARTING_BLOCKCHAIN_TIME=4800000
+            - BLOCKCHAIN_VERSION=latest
+            - MODENA_ANCHOR_CONTRACT=0x4fBb53eF9b673AdAC26dd8F31BFB8fdfFEC876F6
+            - WALLET_PRIVATE_KEY=0x9c1534b4285d3ca01c2410b523b0291b7b020cad03c8dfdce533f53c091cfe85
+            - LEDGER_TYPE=rsk

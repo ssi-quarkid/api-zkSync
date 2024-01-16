@@ -1,0 +1,137 @@
+,
+          html = Defiant.render('sca_template', data);
+        
+        $('#output').append(html);
+      }//]]> 
+    </script>
+	<style>
+		table {
+		 margin-left: 5%;
+		 width:90%;
+		}
+		table, th, td {
+		 border: 1px solid black;
+		 border-collapse: collapse;
+		 padding: 15px;
+                 text-align: left;
+		}
+		tr:nth-child(even) {
+		 background-color: #dddddd;
+		}
+		</style>
+	</style>
+  </head>
+  <body>
+    <div align="center">
+       <img src="https://asijira-confluence.buenosaires.gob.ar/download/attachments/59277756/cabecera.jpg?api=v2">
+    </div>
+    <!-- Defiant template -->
+    <script type="defiant/xsl-template">
+      <xsl:template name="sca_template">
+		
+                <h1 style="text-align:center; color:rgb(66, 82, 113);">PROYECTO: NombreProyecto</h1>
+		<h1 style="text-align:center; color:rgb(66, 82, 113);">REPORTE DE DEPENDENCY SCANNING</h1>
+		<br/>
+		<xsl:variable name="counttotal">
+			<xsl:value-of select="count(//vulnerabilities)" />
+		</xsl:variable>
+		<xsl:variable name="countcritical">
+			<xsl:value-of select="count(//vulnerabilities[severity = 'Critical'])" />
+		</xsl:variable>
+		<xsl:variable name="counthigh">
+			<xsl:value-of select="count(//vulnerabilities[severity = 'High'])" />
+		</xsl:variable>
+		<xsl:variable name="countmedium">
+			<xsl:value-of select="count(//vulnerabilities[severity = 'Medium'])" />
+		</xsl:variable>
+		<xsl:variable name="countlow">
+			<xsl:value-of select="count(//vulnerabilities[severity = 'Low'])" />
+		</xsl:variable>
+		<xsl:variable name="countunknown">
+			<xsl:value-of select="count(//vulnerabilities[severity = 'Unknown'])" />
+		</xsl:variable>
+		<table>
+			<tr>
+				<th style="text-align:left;">TIPO DE VULNERABILIDADES (Por Severidad)</th>
+				<th style="text-align:left;">TOTAL DE VULNERABILIDADES</th>
+			</tr>
+			<tr>
+				<td>Critical</td>
+				<td><xsl:value-of select="$countcritical" /></td>
+			</tr>
+			<tr>
+				<td>High</td>
+				<td><xsl:value-of select="$counthigh" /></td>
+			</tr>
+			<tr>
+				<td>Medium</td>
+				<td><xsl:value-of select="$countmedium" /></td>
+			</tr>
+    			<tr>
+				<td>Low</td>
+				<td><xsl:value-of select="$countlow" /></td>
+			</tr>
+			<tr>
+				<td>Unknown</td>
+				<td><xsl:value-of select="$countunknown" /></td>
+			</tr>
+			<tr>
+				<th>TOTAL:</th>
+				<th><xsl:value-of select="$counttotal" /></th>
+			</tr>
+		</table>
+
+                <hr/>
+		<table border="1">
+		<tr><th>SEVERIDAD</th><th>NOMBRE</th><th>FILE</th><th>LINK</th></tr>
+          <xsl:for-each select="//vulnerabilities"> 
+			  <tr>
+				<td>
+						<xsl:variable name="sev">
+							<xsl:value-of select="severity" /> 
+						</xsl:variable>
+						<xsl:variable name="col">
+							<xsl:choose>
+							<xsl:when test="$sev = 'Critical'">
+							  background-color: red;
+							</xsl:when>
+							<xsl:when test="$sev = 'High'">
+							  background-color: orange;
+							</xsl:when>
+							<xsl:when test="$sev = 'Medium'">
+							background-color: yellow;
+							</xsl:when>
+							<xsl:when test="$sev = 'Low'">
+							background-color: skyblue;
+							</xsl:when>
+							<xsl:otherwise>
+							background-color: white;
+							</xsl:otherwise>
+							</xsl:choose>
+						</xsl:variable>	
+						<xsl:attribute name="style">
+							<xsl:value-of select="$col" />
+						</xsl:attribute>
+					  <xsl:value-of select="$sev" />
+
+				</td>
+				<td>
+				  <xsl:value-of select="name" />
+				</td>
+				<td>
+				  <xsl:value-of select="location/file" />
+				</td>
+				<td>  
+				  <xsl:variable name="url">
+					<xsl:value-of select="identifiers/url" /> 
+				  </xsl:variable>
+				  <a href="{$url}">Link</a>
+				</td>        
+			  </tr>
+          </xsl:for-each>
+		</table>
+      </xsl:template>
+    </script>
+    <div id="output"></div>
+  </body>
+</html>

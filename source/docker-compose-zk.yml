@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  modenav4:
+    image: api-zksynk-s2i:latest
+    ports:
+      - 8000:3000 #MODENA API port
+    environment:
+      - DID_METHOD_NAME=quarkid:zksync
+      - CONTENT_ADDRESSABLE_STORE_SERVICE_URI=http://10.9.10.43:5001/
+      - DATABASE_NAME=modena-zksync-testnet-v1
+      - RPC_URL=https://testnet.era.zksync.dev
+      - MONGO_DB_CONNECTION_STRING=mongodb://10.9.11.141:27017?authSource=admin
+      - MAX_CONCURRENT_DOWNLOADS=20
+      - OBSERVING_INTERVAL_IN_SECONDS=5
+      - BATCHING_INTERVAL_IN_SECONDS=10
+      - STARTING_BLOCKCHAIN_TIME=2652485
+      - BLOCKCHAIN_VERSION=latest
+      - MODENA_ANCHOR_CONTRACT=0xE7951D5e91Aee502507A32C97B6bf77033bb29E7
+      - WALLET_PRIVATE_KEY=0xb44564ecaa8889afb943c47feeb87473c36edcbeab9498426b9e0ac171b7ef66
+      - ACCOUNT_ADDRESS=0x6bb053904F77481E324246EA519A1941B468E003
+      - LEDGER_TYPE=zksync
+
+

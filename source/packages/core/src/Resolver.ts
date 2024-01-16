@@ -1,0 +1,331 @@
+import {
+  OperationType,
+  Multihash,
+  IVersionManager,
+  IOperationStore,
+  DidState,
+  AnchoredOperationModel,
+  Logger,
+  SidetreeError,
+} from '@extrimian-sidetree/common';
+
+/**
+ * NOTE: Resolver cannot be versioned because it needs to be aware of `VersionManager` to fetch versioned operation processors.
+ */
+export default class Resolver {
+  public constructor(
+    private versionManager: IVersionManager,
+    private operationStore: IOperationStore
+  ) { }
+
+  /**
+   * Resolve the given DID unique suffix to its latest DID state.
+   * @param didUniqueSuffix The unique suffix of the DID to resolve. e.g. if 'did:sidetree:abc123' is the DID, the unique suffix would be 'abc123'
+   * @returns Final DID state of the DID. Undefined if the unique suffix of the DID is not found or the DID state is not constructable.
+   */
+  public async resolve(didUniqueSuffix: string): Promise<DidState | undefined> {
+    Logger.info(`Resolving DID unique suffix '${didUniqueSuffix}'...`);
+
+
+    const operations = await this.operationStore.get(didUniqueSuffix);
+
+
+    const operationsByType = Resolver.categorizeOperationsByType(operations);
+
+
+
+    // Find and apply a valid create operation.
+    let didState = await this.applyCreateOperation(
+      operationsByType.createOperations
+    );
+
+
+    console.log("intial state created");
+    // If can't construct an initial DID state.
+    if (didState === undefined) {
+      return undefined;
+    }
+
+    // Apply recovery/deactivate operations until an operation matching the next recovery commitment cannot be found.
+    const recoverAndDeactivateOperations = operationsByType.recoverOperations.concat(
+      operationsByType.deactivateOperations
+    );
+    console.log("recover operations")
+    const recoveryCommitValueToOperationMap = await this.constructCommitValueToOperationLookupMap(
+      recoverAndDeactivateOperations
+    );
+
+    didState = await this.applyRecoverAndDeactivateOperations(
+      didState,
+      recoveryCommitValueToOperationMap
+    );
+
+    // If the previous applied operation is a deactivate. No need to continue further.
+    if (didState.nextRecoveryCommitmentHash === undefined) {
+      return didState;
+    }
+
+    console.log("update operations")
+    // Apply update operations until an operation matching the next update commitment cannot be found.
+    const updateCommitValueToOperationMap = await this.constructCommitValueToOperationLookupMap(
+      operationsByType.updateOperations
+    );
+    console.log("applying update oprations");
+    console.log(Array.from(updateCommitValueToOperationMap.entries()));
+    didState = await this.applyUpdateOperations(
+      didState,
+      updateCommitValueToOperationMap
+    );
+
+    return didState;
+  }
+
+  private static categorizeOperationsByType(
+    operations: AnchoredOperationModel[]
+  ): {
+    createOperations: AnchoredOperationModel[];
+    recoverOperations: AnchoredOperationModel[];
+    updateOperations: AnchoredOperationModel[];
+    deactivateOperations: AnchoredOperationModel[];
+  } {
+    const createOperations = [];
+    const recoverOperations = [];
+    const updateOperations = [];
+    const deactivateOperations = [];
+
+    for (const operation of operations) {
+      if (operation.type === OperationType.Create) {
+        createOperations.push(operation);
+      } else if (operation.type === OperationType.Recover) {
+        recoverOperations.push(operation);
+      } else if (operation.type === OperationType.Update) {
+        updateOperations.push(operation);
+      } else {
+        // This is a deactivate operation.
+        deactivateOperations.push(operation);
+      }
+    }
+    return {
+      createOperations,
+      recoverOperations,
+      updateOperations,
+      deactivateOperations,
+    };
+  }
+
+  /**
+   * Iterate through all duplicates of creates until we can construct an initial DID state (some creates maybe incomplete. eg. without `delta`).
+   */
+  private async applyCreateOperation(
+    createOperations: AnchoredOperationModel[]
+  ): Promise<DidState | undefined> {
+    let didState;
+
+
+
+    for (const createOperation of createOperations) {
+      didState = await this.applyOperation(createOperation, undefined);
+
+      console.log("DIDState", didState);
+      // Exit loop as soon as we can construct an initial state.
+      if (didState !== undefined) {
+        break;
+      }
+    }
+
+    return didState;
+  }
+
+  /**
+   * Apply recovery/deactivate operations until an operation matching the next recovery commitment cannot be found.
+   */
+  private async applyRecoverAndDeactivateOperations(
+    startingDidState: DidState,
+    commitValueToOperationMap: Map<string, AnchoredOperationModel[]>
+  ): Promise<DidState> {
+    let didState = startingDidState;
+
+    while (
+      Array.from(commitValueToOperationMap.keys()).some(x => (<any>didState.nextRecoveryCommitmentHash).some((y: string) => y == x))
+    ) {
+      const key: string = Array.from(commitValueToOperationMap.keys()).find(x => (<any>didState.nextRecoveryCommitmentHash).some((y: string) => y == x))!;
+
+      let operationsWithCorrectRevealValue: AnchoredOperationModel[] = commitValueToOperationMap.get(key)!;
+
+      const nextRecoveryCommitmentHash = (<string[]><any>didState.nextRecoveryCommitmentHash).find(x => commitValueToOperationMap.has(x));
+      (<any>didState).currentNextRecoveryCommitmentHash = nextRecoveryCommitmentHash;
+
+      // Sort using blockchain time.
+      operationsWithCorrectRevealValue = operationsWithCorrectRevealValue.sort(
+        (a, b) => a.transactionNumber - b.transactionNumber
+      );
+
+      const newDidState:
+        | DidState
+        | undefined = await this.applyFirstValidOperation(
+          operationsWithCorrectRevealValue,
+          didState
+        );
+
+      // We are done if we can't find a valid recover/deactivate operation to apply.
+      if (newDidState === undefined) {
+        break;
+      }
+
+      // We reach here if we have successfully computed a new DID state.
+      didState = newDidState;
+
+      // If the previous applied operation is a deactivate. No need to continue further.
+      if (didState.nextRecoveryCommitmentHash === undefined) {
+        return didState;
+      }
+    }
+
+    return didState;
+  }
+
+  /**
+   * Apply update operations until an operation matching the next update commitment cannot be found.
+   */
+  private async applyUpdateOperations(
+    startingDidState: DidState,
+    commitValueToOperationMap: Map<string, AnchoredOperationModel[]>
+  ): Promise<DidState> {
+    let didState = startingDidState as any;
+
+    if (didState.nextUpdateCommitmentHash && !Array.isArray(didState.nextUpdateCommitmentHash)) {
+      didState.nextUpdateCommitmentHash = [didState.nextUpdateCommitmentHash]
+    }
+
+    console.log("applying the following update operations:")
+    console.log(didState.nextUpdateCommitmentHash);
+
+    while (Array.from(commitValueToOperationMap.keys()).some(x => (<any>didState.nextUpdateCommitmentHash).some((y: string) => y == x))) {
+      const key: string = Array.from(commitValueToOperationMap.keys()).find(x => (<any>didState.nextUpdateCommitmentHash).some((y: string) => y == x))!;
+
+      let operationsWithCorrectRevealValue: AnchoredOperationModel[] = commitValueToOperationMap.get(key)!;
+
+      const nextUpdateCommitmentHash = (<string[]><any>didState.nextUpdateCommitmentHash).find(x => commitValueToOperationMap.has(x));
+      (<any>didState).currentNextUpdateCommitmentHash = nextUpdateCommitmentHash;
+
+      // Sort using blockchain time.
+      operationsWithCorrectRevealValue = operationsWithCorrectRevealValue.sort(
+        (a, b) => a.transactionNumber - b.transactionNumber
+      );
+
+      const newDidState:
+        | DidState
+        | undefined = await this.applyFirstValidOperation(
+          operationsWithCorrectRevealValue,
+          didState
+        );
+
+      // We are done if we can't find a valid update operation to apply.
+      if (newDidState === undefined) {
+        break;
+      }
+
+      // We reach here if we have successfully computed a new DID state.
+      didState = newDidState;
+    }
+
+    return didState;
+  }
+
+  /**
+   * Applies the given operation to the given DID state.
+   * @param operation The operation to be applied.
+   * @param didState The DID state to apply the operation on top of.
+   * @returns The resultant `DidState`. The given DID state is return if the given operation cannot be applied.
+   */
+  private async applyOperation(
+    operation: AnchoredOperationModel,
+    didState: DidState | undefined
+  ): Promise<DidState | undefined> {
+    let appliedDidState = didState;
+
+
+    // NOTE: MUST NOT throw error, else a bad operation can be used to denial resolution for a DID.
+    try {
+
+      const operationProcessor = this.versionManager.getOperationProcessor(
+        operation.transactionTime
+      );
+
+      appliedDidState = await operationProcessor.apply(
+        operation,
+        appliedDidState
+      );
+
+    } catch (error) {
+      Logger.info(
+        `Skipped bad operation for DID ${operation.didUniqueSuffix} at time ${operation.transactionTime
+        }. Error: ${SidetreeError.stringify(error)}`
+      );
+    }
+
+    return appliedDidState;
+  }
+
+  /**
+   * @returns The new DID State if a valid operation is applied, `undefined` otherwise.
+   */
+  private async applyFirstValidOperation(
+    operations: AnchoredOperationModel[],
+    originalDidState: DidState
+  ): Promise<DidState | undefined> {
+    let newDidState = originalDidState;
+
+    // Stop as soon as an operation is applied successfully.
+    for (const operation of operations) {
+      newDidState = (await this.applyOperation(operation, newDidState))!;
+
+      // If operation matching the recovery commitment is applied.
+      if (
+        newDidState.lastOperationTransactionNumber !==
+        originalDidState.lastOperationTransactionNumber
+      ) {
+        return newDidState;
+      }
+    }
+
+    // TODO: Issue 981 this can probably return old did state. https://github.com/decentralized-identity/sidetree/issues/981
+    // Else we reach the end of operations without being able to apply any of them.
+    return undefined;
+  }
+
+  /**
+   * Constructs a single commit value -> operation lookup map by hashing each operation's reveal value as key, then adding the result to a map.
+   */
+  private async constructCommitValueToOperationLookupMap(
+    nonCreateOperations: AnchoredOperationModel[]
+  ): Promise<Map<string, AnchoredOperationModel[]>> {
+    const commitValueToOperationMap = new Map<
+      string,
+      AnchoredOperationModel[]
+    >();
+
+    // Loop through each operation and add an entry to the commit value -> operations map.
+    for (const operation of nonCreateOperations) {
+      const operationProcessor = this.versionManager.getOperationProcessor(
+        operation.transactionTime
+      );
+      const multihashRevealValueBuffer = await operationProcessor.getMultihashRevealValue(
+        operation
+      );
+      const multihashRevealValue = Multihash.decode(multihashRevealValueBuffer);
+      const commitValue = Multihash.hashThenEncode(
+        multihashRevealValue.hash,
+        multihashRevealValue.algorithm
+      );
+
+      if (commitValueToOperationMap.has(commitValue)) {
+        commitValueToOperationMap.get(commitValue)!.push(operation);
+      } else {
+        commitValueToOperationMap.set(commitValue, [operation]);
+      }
+    }
+
+    return commitValueToOperationMap;
+  }
+}

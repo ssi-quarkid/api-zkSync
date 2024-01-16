@@ -1,0 +1,78 @@
+import { MockCas } from '@extrimian-sidetree/cas';
+import { Modena } from "./Modena";
+import { ModenaNodeConfigs } from "./Types";
+export { ModenaNodeConfigs }
+// import { IpfsCasWithCache } from "@extrimian-sidetree/cas-ipfs";
+import Ipfs from '@decentralized-identity/sidetree/dist/lib/ipfs/Ipfs';
+import { InputOptions } from "@truffle/hdwallet-provider/dist/constructor/Constructor";
+import { getEthereumLedger, getRSKLedger, getZKSyncLedger } from "./LedgerProvider";
+import { IEventEmitter } from '@extrimian-sidetree/common';
+
+
+
+
+export { InputOptions };
+
+const getLedger = async (modenaNodeConfigs: ModenaNodeConfigs) => {
+    switch (modenaNodeConfigs.ledgerType) {
+        //case 'starknet':
+        //    return await getStarknetLedger(modenaNodeConfigs);
+        case 'rsk':
+            return await getRSKLedger(modenaNodeConfigs);
+        case 'eth':
+            return await getEthereumLedger(modenaNodeConfigs);
+        case 'zksync':
+            return await getZKSyncLedger(modenaNodeConfigs);
+        default:
+            return await getEthereumLedger(modenaNodeConfigs);
+    }
+}
+
+const getTestCas = async () => {
+    const cas = new MockCas();
+    await cas.initialize();
+    return cas;
+};
+
+const getCas = async (config: ModenaNodeConfigs) => {
+    const cas = new Ipfs(
+        config.contentAddressableStoreServiceUri,
+        10
+        // config.mongoDbConnectionString,
+        // config.databaseName
+    );
+    // await cas.initialize();
+    return cas;
+};
+
+export const getTestNodeInstance = async (
+    modenaNodeConfigs: ModenaNodeConfigs
+): Promise<Modena> => {
+    console.log(`initializen a ${modenaNodeConfigs.ledgerType} ledger`)
+    const ledger = await getLedger(modenaNodeConfigs);
+    const cas = await getTestCas();
+    const modena = new Modena(
+        modenaNodeConfigs as any,
+        modenaNodeConfigs.versions,
+        cas,
+        ledger
+    );
+    await modena.initialize();
+    return modena;
+};
+
+export const getNodeInstance = async (
+    modenaNodeConfigs: ModenaNodeConfigs, eventEmitter?: IEventEmitter
+): Promise<Modena> => {
+
+    const ledger = await getLedger(modenaNodeConfigs);
+    const cas = await getCas(modenaNodeConfigs);
+    const modena = new Modena(
+        modenaNodeConfigs as any,
+        modenaNodeConfigs.versions,
+        cas,
+        ledger
+    );
+    await modena.initialize(undefined, eventEmitter);
+    return modena;
+};

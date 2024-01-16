@@ -1,0 +1,53 @@
+{
+  "name": "@extrimian-sidetree/did-method",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "gjgd (https://github.com/gjgd)",
+  "contributors": [
+    "Orie Steele (https://github.com/OR13)",
+    "gjgd (https://github.com/gjgd)"
+  ],
+  "module": "dist/did-method.esm.js",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch ",
+    "build": "tsdx build",
+    "test": "tsdx test --runInBand --passWithNoTests",
+    "lint": "tsdx lint src ",
+    "lint:fix": "tsdx lint src --fix ",
+    "prepare": "tsdx build "
+  },
+  "devDependencies": {
+    "@types/semver": "7.3.5",
+    "tsdx": "^0.14.1"
+  },
+  "dependencies": {
+    "@rollup/plugin-replace": "^3.0.0",
+    "@extrimian-sidetree/cas": "1.0.0",
+    "@extrimian-sidetree/common": "1.0.0",
+    "@extrimian-sidetree/core": "1.0.0",
+    "@extrimian-sidetree/db": "1.0.0",
+    "@extrimian-sidetree/ledger": "1.0.0",
+    "mongodb": "^3.6.9",
+    "semver": "^7.3.5",
+    "time-span": "3.1.0"
+  },
+  "homepage": "https://github.com/transmute-industries/sidetree.js/tree/main/packages/did-method",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/transmute-industries/sidetree.js.git",
+    "directory": "packages/did-method"
+  },
+  "gitHead": "e97862f01a5ad9845d82eb57ca46d335a98aeb8b"
+}

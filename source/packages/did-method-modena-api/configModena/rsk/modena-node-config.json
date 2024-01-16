@@ -1,0 +1,17 @@
+{
+    "contentAddressableStoreServiceUri": "http://20.121.1.184:5001/",
+    "modenaAnchorContract": "0xf9ECf67f3b38A4b9Ec2c9Aff0861B13cD734809f",
+    "databaseName": "modena-rsk",
+    "didMethodName": "modena:rsk",
+    "ethereumRpcUrl": "http://20.102.71.187:4446/",
+    "mongoDbConnectionString": "mongodb://localhost:27017/",
+    "batchingIntervalInSeconds": 5,
+    "observingIntervalInSeconds": 5,
+    "maxConcurrentDownloads": 20,
+    "versions": [
+      {
+        "startingBlockchainTime": 0,
+        "version": "latest"
+      }
+    ]
+  }

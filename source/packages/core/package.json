@@ -1,0 +1,63 @@
+{
+  "name": "@extrimian-sidetree/core",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Orie Steele (https://github.com/OR13)",
+  "contributors": [
+    "Orie Steele (https://github.com/OR13)",
+    "gjgd (https://github.com/gjgd)"
+  ],
+  "module": "dist/core.esm.js",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch ",
+    "build": "tsdx build ",
+    "pretest": "docker-compose up -d mongo",
+    "test": "tsdx test --passWithNoTests ",
+    "lint": "tsdx lint src ",
+    "lint:fix": "tsdx lint src --fix ",
+    "prepare": "tsdx build "
+  },
+  "devDependencies": {
+    "@types/hdkey": "^0.7.1",
+    "@types/time-span": "2.0.0",
+    "tsdx": "^0.14.1"
+  },
+  "dependencies": {
+    "@rollup/plugin-replace": "^3.0.0",
+    "@extrimian-sidetree/common": "1.0.0",
+    "@sidetree/crypto": "^0.3.1-unstable.36",
+    "@extrimian-sidetree/db": "1.0.0",
+    "@transmute/did-key-ed25519": "^0.3.0-unstable.4",
+    "@trust/keyto": "^1.0.1",
+    "bip39": "^3.0.2",
+    "canonicalize": "^1.0.5",
+    "chalk": "^4.1.0",
+    "core-js": "^2.6.9",
+    "hdkey": "^2.0.1",
+    "jest-environment-node": "^27.2.5",
+    "jose": "^1.28.1",
+    "priorityqueue": "^1.0.0",
+    "time-span": "3.1.0",
+    "uri-js": "^4.4.1",
+    "yieldable-json": "^2.0.0"
+  },
+  "gitHead": "e97862f01a5ad9845d82eb57ca46d335a98aeb8b",
+  "homepage": "https://github.com/transmute-industries/sidetree.js/tree/main/packages/core",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/transmute-industries/sidetree.js.git",
+    "directory": "packages/core"
+  }
+}

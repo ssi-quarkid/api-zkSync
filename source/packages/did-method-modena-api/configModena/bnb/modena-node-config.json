@@ -1,0 +1,19 @@
+{
+  "contentAddressableStoreServiceUri": "http://20.121.1.184:5001/",
+  "databaseName": "modena-bnb",
+  "didMethodName": "modena:bnb",
+  "modenaAnchorContract" : "0xa681cA3F5c73D68635d166364F5d214b1270f606",
+  "rpcUrl": "https://misty-yolo-isle.bsc-testnet.discover.quiknode.pro/9af43ae5b298fc058ae2acce1b6893414e556a8b/",
+  "mongoDbConnectionString": "mongodb://localhost:27017/",
+  "batchingIntervalInSeconds": 60,
+  "observingIntervalInSeconds": 30,
+  "maxConcurrentDownloads": 20,
+  "ledgerType": "eth",
+  "versions": [
+    {
+      "startingBlockchainTime": 27320923,
+      "version": "latest"
+    }
+  ]
+}
+

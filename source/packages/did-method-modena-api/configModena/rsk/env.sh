@@ -1,0 +1,9 @@
+export WALLET_PRIVATE_KEY=0x9c1534b4285d3ca01c2410b523b0291b7b020cad03c8dfdce533f53c091cfe85
+export DATABASE_NAME=modena-rsk-testing
+export LEDGER_TYPE=rsk
+export RPC_URL=https://rsk.getblock.io/d7130f9f-93b4-41c2-861d-48fd1857d287/mainnet/
+export DID_METHOD_NAME=modena:rsk
+export MODENA_ANCHOR_CONTRACT=0xd1Db7479D96E074D8918aA10d2Ca704a4e580f3d
+export STARTING_BLOCKCHAIN_TIME=5150000
+cd ../..
+nest start

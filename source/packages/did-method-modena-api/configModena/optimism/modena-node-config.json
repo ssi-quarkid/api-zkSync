@@ -1,0 +1,19 @@
+
+{
+  "contentAddressableStoreServiceUri": "http://20.121.1.184:5001/",
+  "databaseName": "modena-optimism",
+  "didMethodName": "modena:optimism",
+  "modenaAnchorContract": "0xa30957A641155D1d3a9041cE8eBAfc0A22220Cfd",
+  "rpcUrl": "https://opt-goerli.g.alchemy.com/v2/nbAW4l4SS_1Ext-bWcdS89OTzWfoA1KW",
+  "mongoDbConnectionString": "mongodb://localhost:27017/",
+  "batchingIntervalInSeconds": 15,
+  "observingIntervalInSeconds": 10,
+  "ledgerType" : "eth",
+  "maxConcurrentDownloads": 20,
+  "versions": [
+    {
+      "startingBlockchainTime": 0,
+      "version": "latest"
+    }
+  ]
+}

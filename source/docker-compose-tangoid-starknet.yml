@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+    modena:
+        container_name: tangoid-starknet
+        build:
+          context: .
+          dockerfile: Dockerfile
+        extra_hosts:
+            - host.docker.internal:host-gateway
+        ports: 
+            - 6900:3000 #MODENA API port
+        environment:
+            - DID_METHOD_NAME=tangoid:starknet
+            - CONTENT_ADDRESSABLE_STORE_SERVICE_URI=http://20.121.1.184:5001/
+            - DATABASE_NAME=tangoid-starknet
+            - RPC_URL=https://starknet-goerli.infura.io/v3/0e2486888fde42c9a0a79b33a6a4e771
+            - MONGO_DB_CONNECTION_STRING=mongodb://host.docker.internal:27017
+            - MAX_CONCURRENT_DOWNLOADS=20
+            - OBSERVING_INTERVAL_IN_SECONDS=60
+            - BATCHING_INTERVAL_IN_SECONDS=60
+            - STARTING_BLOCKCHAIN_TIME=0
+            - BLOCKCHAIN_VERSION=latest
+            - MODENA_ANCHOR_CONTRACT=0x0132a9c2003905d976ab81934d842aecd6fe7136ec1d23f0d183ffff8bd238a5
+            - WALLET_PRIVATE_KEY=0x66EAF9D304BE676BD93E08B63B7DEECFEE0752553248615B1D4C2D83E32B0FF
+            - ACCOUNT_ADDRESS=0x700ca2985603133d4d4e8c78c4d6d656cd5004f216d146c7aac7d4e61edbf21
+            - LEDGER_TYPE=starknet

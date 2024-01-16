@@ -1,0 +1,55 @@
+{
+  "name": "@extrimian-sidetree/ethereum",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Orie Steele (https://github.com/OR13)",
+  "contributors": [
+    "Orie Steele (https://github.com/OR13)",
+    "gjgd (https://github.com/gjgd)"
+  ],
+  "module": "dist/ethereum.esm.js",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "pretest": "docker-compose up -d ganache",
+    "test": "tsdx test",
+    "lint": "tsdx lint src ",
+    "lint:fix": "tsdx lint src --fix",
+    "prepare": "tsdx build ",
+    "contracts:test": "truffle test",
+    "contracts:migrate:dev": "truffle migrate --network development --reset",
+    "contracts:migrate:ropsten": "truffle migrate --network ropsten"
+  },
+  "peerDependencies": {
+    "web3": "1.^7.1"
+  },
+  "devDependencies": {
+    "@truffle/hdwallet-provider": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "truffle": "^5.5.27",
+    "tsdx": "^0.14.1"
+  },
+  "dependencies": {
+    "@rollup/plugin-replace": "^3.0.0",
+    "@extrimian-sidetree/common": "1.0.0",
+    "@extrimian-sidetree/core": "1.0.0",
+    "web3": "^1.7.1",
+    "web3-eth": "^1.6.0",
+    "web3-eth-contract": "^1.3.6"
+  },
+  "gitHead": "e97862f01a5ad9845d82eb57ca46d335a98aeb8b",
+  "homepage": "https://github.com/transmute-industries/sidetree.js/tree/main/packages/ledger-ethereum",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/transmute-industries/sidetree.js.git",
+    "directory": "packages/ledger-ethereum"
+  }
+}

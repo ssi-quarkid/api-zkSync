@@ -1,0 +1,145 @@
+,
+          html = Defiant.render('cq_template', data);
+        
+        $('#output').append(html);
+      }//]]> 
+    </script>
+	<style>
+		table {
+		 margin-left:2%;
+		 width:100%;
+		}
+		table, th, td {
+		 border: 1px solid black;
+		 border-collapse: collapse;
+		 padding: 15px;
+                 text-align: left;
+		}
+		tr:nth-child(even) {
+		 background-color: #dddddd;
+		}
+		</style>
+	</style>
+  </head>
+  <body>
+    <div align="center">
+       <img src="https://asijira-confluence.buenosaires.gob.ar/download/attachments/59277756/cabecera.jpg?api=v2">
+    </div>
+    <!-- Defiant template -->
+    <script type="defiant/xsl-template">
+      <xsl:template name="cq_template">
+		
+                <h1 style="text-align:center; color:rgb(66, 82, 113);">PROYECTO: NombreProyecto</h1>
+		<h1 style="text-align:center; color:rgb(66, 82, 113);">REPORTE DE CODE QUALITY</h1>
+		<br/>
+		<xsl:variable name="count">
+			<xsl:value-of select="count(//issue)" />
+		</xsl:variable>
+		<xsl:variable name="countargument_count">
+			<xsl:value-of select="count(//issue[check_name = 'argument_count'])" />
+		</xsl:variable>
+		<xsl:variable name="countcomplex_logic">
+			<xsl:value-of select="count(//issue[check_name = 'complex_logic'])" />
+		</xsl:variable>
+		<xsl:variable name="countfile_lines">
+		        <xsl:value-of select="count(//issue[check_name = 'file_lines'])" />
+                </xsl:variable>
+		<xsl:variable name="countidentical_code">
+			<xsl:value-of select="count(//issue[check_name = 'identical-code'])" />
+		</xsl:variable>
+		<xsl:variable name="countmethod_complexity">
+			<xsl:value-of select="count(//issue[check_name = 'method_complexity'])" />
+		</xsl:variable>
+		<xsl:variable name="countmethod_count">
+		        <xsl:value-of select="count(//issue[check_name = 'method_count'])" />
+                </xsl:variable>
+		<xsl:variable name="countmethod_lines">
+			<xsl:value-of select="count(//issue[check_name = 'method_lines'])" />
+		</xsl:variable>
+		<xsl:variable name="countnested_control_flow">
+			<xsl:value-of select="count(//issue[check_name = 'nested_control_flow'])" />
+		</xsl:variable>
+		<xsl:variable name="countreturn_statements">
+		        <xsl:value-of select="count(//issue[check_name = 'return_statements'])" />
+                </xsl:variable>
+		<xsl:variable name="countsimilar_code">
+			<xsl:value-of select="count(//issue[check_name = 'similar-code'])" />
+		</xsl:variable>
+		
+                <table>
+			<tr>
+				<th style="text-align:left;">TIPO</th>
+				<th style="text-align:left;">TOTAL</th>
+			</tr>
+			<tr>
+				<td>argument-count</td>
+				<td><xsl:value-of select="$countargument_count" /></td>
+			</tr>
+			<tr>
+				<td>countcomplex-logic</td>
+				<td><xsl:value-of select="$countcomplex_logic" /></td>
+			</tr>
+                        <tr>
+				<td>file-lines</td>
+				<td><xsl:value-of select="$countfile_lines" /></td>
+			</tr> 
+                        <tr>
+				<td>identical-code</td>
+				<td><xsl:value-of select="$countidentical_code" /></td>
+			</tr>
+                        <tr>
+				<td>method-complexity</td>
+				<td><xsl:value-of select="$countmethod_complexity" /></td>
+			</tr>
+                        <tr>
+				<td>method-count</td>
+				<td><xsl:value-of select="$countmethod_count" /></td>
+			</tr>
+                        <tr>
+				<td>method-lines</td>
+				<td><xsl:value-of select="$countmethod_lines" /></td>
+			</tr>
+
+                        <tr>
+				<td>nested-control-flow</td>
+				<td><xsl:value-of select="$countnested_control_flow" /></td>
+			</tr>
+                        <tr>
+				<td>return-statements</td>
+				<td><xsl:value-of select="$countreturn_statements" /></td>
+			</tr>
+                        <tr>
+				<td>similar-code</td>
+				<td><xsl:value-of select="$countsimilar_code" /></td>
+			</tr>
+                        <tr>
+				<th>TOTAL</th>
+				<th><xsl:value-of select="$count" /></th>
+			</tr>
+		</table>
+
+                	<hr/>
+		<table border="1">
+		<tr><th>NOMBRE</th><th>DESCRIPCIÓN</th><th>UBICACIÓN</th><th>LINEA</th></tr>
+          <xsl:for-each select="//issue"> 
+			  <tr>
+				<td>
+				  <xsl:value-of select="check_name" />
+				</td>
+				<td>
+				  <xsl:value-of select="description" />
+				</td>
+				<td>
+				  <xsl:value-of select="location/path" />
+				</td>    
+				<td>
+				  <xsl:value-of select="location/lines/begin" />
+				</td>
+			  </tr>
+          </xsl:for-each>
+		</table>
+      </xsl:template>
+    </script>
+    <div id="output"></div>
+  </body>
+</html>

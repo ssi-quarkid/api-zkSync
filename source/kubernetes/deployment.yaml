@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: modena-rsk
+  name: modena-rsk
+  namespace: modena-rsk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: modena-rsk
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: modena-rsk
+    spec:
+      imagePullSecrets:
+      - name: acr-secret
+      containers:
+        - env:
+            - name: AUTO_INIT
+              valueFrom:
+                configMapKeyRef:
+                  key: AUTO_INIT
+                  name: modena              
+            - name: DID_METHOD_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: DID_METHOD_NAME
+                  name: modena
+            - name: DATABASE_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: DATABASE_NAME
+                  name: modena
+            - name: CONTENT_ADDRESSABLE_STORE_SERVICE_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: CONTENT_ADDRESSABLE_STORE_SERVICE_URI
+                  name: modena
+            - name: MONGO_DB_CONNECTION_STRING
+              valueFrom:
+                configMapKeyRef:
+                  key: MONGO_DB_CONNECTION_STRING
+                  name: modena
+            - name: RPC_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: RPC_URL
+                  name: modena
+            - name: MODENA_ANCHOR_CONTRACT
+              valueFrom:
+                configMapKeyRef:
+                  key: MODENA_ANCHOR_CONTRACT
+                  name: modena
+            - name: WALLET_PRIVATE_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: WALLET_PRIVATE_KEY
+                  name: modena   
+            - name: OBSERVING_INTERVAL_IN_SECONDS
+              valueFrom:
+                configMapKeyRef:
+                  key: OBSERVING_INTERVAL_IN_SECONDS
+                  name: modena
+            - name: BATCHING_INTERVAL_IN_SECONDS
+              valueFrom:
+                configMapKeyRef:
+                  key: BATCHING_INTERVAL_IN_SECONDS
+                  name: modena
+            - name: LEDGER_TYPE
+              valueFrom:
+                configMapKeyRef:
+                  key: LEDGER_TYPE
+                  name: modena
+          image: genova.azurecr.io/modena-rsk:0.0.2
+          imagePullPolicy: Always
+          name: modena-rsk
+          ports:
+            - containerPort: 3000
+          resources: {}
+      restartPolicy: Always
+status: {}
