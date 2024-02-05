@@ -232,7 +232,7 @@ export default class BatchWriter implements IBatchWriter {
     }
 
     const provisionalIndexFileBuffer = await ProvisionalIndexFile.createBuffer(
-      chunkFileUri!,
+      chunkFileUri,
       provisionalProofFileUri,
       updateOperations
     );

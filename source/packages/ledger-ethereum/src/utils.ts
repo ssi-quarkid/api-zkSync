@@ -176,6 +176,7 @@ async function getPastEventsChunked(
       }
     }
   } catch (e) {
+    console.log(e)
     Logger.error(LogColor.red(`Failed fetching blocks, from ${lookingBlockFrom} to ${lookingBlockTo}`))
     return {
       events: events,

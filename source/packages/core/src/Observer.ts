@@ -119,8 +119,7 @@ export default class Observer {
             cursorTransactionTimeHash
           );
           Logger.info(
-            `Fetched ${
-              readResult.transactions.length
+            `Fetched ${readResult.transactions.length
             } Sidetree transactions from blockchain service in ${endTimer.rounded()} ms.`
           );
         } catch (error) {
@@ -242,10 +241,23 @@ export default class Observer {
       );
       Logger.error(error);
     } finally {
+      let used = process.memoryUsage();
+      console.log("before the collection")
+      console.log(`Memory usage (in bytes):`);
+      console.log(`  - Heap total: ${used.heapTotal / (1024 * 1024)} MB`);
+      console.log(`  - Heap used: ${used.heapUsed / (1024 * 1024)} MB`);
+      console.log(`  - RSS (Resident Set Size): ${used.rss}`);
       if (global.gc) {
-        Logger.info(LogColor.green(`Running garbage collection`) );
+        Logger.info(LogColor.green(`Running garbage collection, write`));
         global.gc();
+        let used = process.memoryUsage();
+        console.log("after the collection")
+        console.log(`Memory usage (in bytes):`);
+        console.log(`  - Heap total: ${used.heapTotal / (1024 * 1024)} MB`);
+        console.log(`  - Heap used: ${used.heapUsed / (1024 * 1024)} MB`);
+        console.log(`  - RSS (Resident Set Size): ${used.rss}`);
       }
+
       if (this.continuePeriodicProcessing) {
         Logger.info(
           `Waiting for ${this.observingIntervalInSeconds} seconds before fetching and processing transactions again.`
@@ -311,8 +323,7 @@ export default class Observer {
     const endTimer = timeSpan();
     const unresolvableTransactions = await this.unresolvableTransactionStore.getUnresolvableTransactionsDueForRetry();
     Logger.info(
-      `Fetched ${
-        unresolvableTransactions.length
+      `Fetched ${unresolvableTransactions.length
       } unresolvable transactions to retry in ${endTimer.rounded()} ms.`
     );
 
@@ -349,7 +360,7 @@ export default class Observer {
     while (
       i < this.transactionsUnderProcessing.length &&
       this.transactionsUnderProcessing[i].processingStatus ===
-        TransactionProcessingStatus.Processed
+      TransactionProcessingStatus.Processed
     ) {
       lastConsecutivelyProcessedTransaction = this.transactionsUnderProcessing[
         i

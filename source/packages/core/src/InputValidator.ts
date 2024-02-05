@@ -131,13 +131,7 @@ export default class InputValidator {
     input: any,
     inputContextForErrorLogging: string
   ) {
-    // const inputType = typeof input;
-    // if (inputType !== 'string') {
-    //   throw new SidetreeError(
-    //     ErrorCode.EncodedMultihashMustBeAString,
-    //     `The ${inputContextForErrorLogging} must be a string but is of ${inputType} type.`
-    //   );
-    // }
+
 
     const supportedHashAlgorithmsInMultihashCode =
       protocolParameters.hashAlgorithmsInMultihashCode;

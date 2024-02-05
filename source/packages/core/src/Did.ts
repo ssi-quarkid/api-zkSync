@@ -5,12 +5,12 @@ import {
   OperationModel,
   OperationType,
   SidetreeError,
+  SuffixDataModel
 } from '@extrimian-sidetree/common';
 
 import CreateOperation from './CreateOperation';
 import Delta from './Delta';
 import JsonCanonicalizer from './util/JsonCanonicalizer';
-import { SuffixDataModel } from '@extrimian-sidetree/common';
 import { computeUniqueSuffix } from './computeUniqueSuffix';
 
 // From:
@@ -42,7 +42,6 @@ export default class Did {
   private constructor(did: string, didMethodName: string) {
     this.didMethodName = didMethodName;
     const didPrefix = `did:${didMethodName}:`;
-    // TODO https://github.com/decentralized-identity/sidetree/issues/470 add network prefix to the didPrefix string
 
     if (!did.startsWith(didPrefix)) {
       throw new SidetreeError(
@@ -126,7 +125,6 @@ export default class Did {
    * Computes the DID unique suffix given the suffix data object.
    */
   public static computeUniqueSuffix(suffixDataModel: SuffixDataModel): string {
-    // TODO: #965 - Need to decide on what hash algorithm to use when hashing suffix data - https://github.com/decentralized-identity/sidetree/issues/965
     return computeUniqueSuffix(suffixDataModel);
   }
 

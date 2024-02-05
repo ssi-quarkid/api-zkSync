@@ -1,5 +1,5 @@
 
-import { BadRequestException, Body, Controller, Get, HttpCode, HttpStatus, InternalServerErrorException, NotFoundException, Param, Post, Query, Res } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, HttpStatus, InternalServerErrorException, Param, Post, Query, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { AppService } from './modena-api.service';
 import { DebugDto } from './dto/DebugDto';
@@ -42,10 +42,6 @@ export class AppController {
   }
 
 
-  // @Get("init")
-  // async init(): Promise<string> {
-  //   return await this.appService.init();
-  // }
 
 
   @Post('create')
@@ -59,8 +55,8 @@ export class AppController {
 
 
   @Get("resolve/:did")
-  async get(@Param("did") did: string ,  @Query('long') long: boolean,) {
-    if(long === true)
+  async get(@Param("did") did: string, @Query('long') long: boolean) {
+    if (long === true)
       return await this.appService.getLongDID(did);
     return await this.appService.getDID(did);
   }
@@ -69,10 +65,10 @@ export class AppController {
   @Get("/health/ready")
   async firstPullReady(@Param("did") did: string) {
 
-    const a = await this.appService.getPullCount();
+    const a = this.appService.getPullCount();
     if (a == 0)
       throw new InternalServerErrorException();
-    
+
   }
 
   @Get("1.0/identifiers/:did")

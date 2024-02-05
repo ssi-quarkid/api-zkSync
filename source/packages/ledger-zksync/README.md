@@ -13,6 +13,6 @@ The ZKSync blockchain encourages the usage of the ethers package, a test has bee
 - **wallet:** An ethers wallet
 - **web3:** A Web3 instance
 - **eventPullChunckSize:** The maxium number of blocks that can be looked on a read request
-- **contractAddress (optional):** address of the sidetree contract
+- **contractAddress:** address of the sidetree contract
 - **startingBlockchainTime (optional):** The blockchain time where the events will start being pulled (it is suggested to set the time of the creation of the contract)
 - **logger (optional):** A logger

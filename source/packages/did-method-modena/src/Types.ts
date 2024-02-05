@@ -1,11 +1,6 @@
 import { InputOptions } from "@truffle/hdwallet-provider/dist/constructor/Constructor";
 
-export type StarkNetAccount = {
-    accountAddress: string;
-    privateKey: string;
-}
-
-export type EthereumNodeConfig = {
+export type ModenaNodeConfigs = {
     contentAddressableStoreServiceUri: string;
     databaseName: string;
     didMethodName: string;
@@ -26,9 +21,7 @@ export type EthereumNodeConfig = {
         }
     ];
     secondaryWalletProviderConfigs: InputOptions;
-    walletProviderConfigs: InputOptions | StarkNetAccount;
+    walletProviderConfigs: InputOptions;
     modenaAnchorContract: string;
     ethereumMnemonic?: string;
 };
-
-export type ModenaNodeConfigs = EthereumNodeConfig 

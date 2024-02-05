@@ -68,9 +68,8 @@ export default class TransactionProcessor implements ITransactionProcessor {
       // Download and verify core proof file.
       coreProofFile = await this.downloadAndVerifyCoreProofFile(coreIndexFile);
     } catch (error) {
-      let retryNeeded = true;
+      let retryNeeded;
       if (error instanceof SidetreeError) {
-        // If error is related to CAS network connectivity issues, we need to retry later.
         if (
           error.code === ErrorCode.CasNotReachable ||
           error.code === ErrorCode.CasFileNotFound
@@ -483,7 +482,6 @@ export default class TransactionProcessor implements ITransactionProcessor {
         delta: createDeltas?.[i], // Add `delta` property if chunk file found.
       };
 
-      // TODO: Issue 442 - https://github.com/decentralized-identity/sidetree/issues/442
       // Use actual operation request object instead of buffer.
       const operationBuffer = Buffer.from(JSON.stringify(composedRequest));
 
@@ -539,7 +537,6 @@ export default class TransactionProcessor implements ITransactionProcessor {
         delta: recoverDeltas?.[i], // Add `delta` property if chunk file found.
       };
 
-      // TODO: Issue 442 - https://github.com/decentralized-identity/sidetree/issues/442
       // Use actual operation request object instead of buffer.
       const operationBuffer = Buffer.from(JSON.stringify(composedRequest));
 
@@ -583,7 +580,6 @@ export default class TransactionProcessor implements ITransactionProcessor {
         signedData: deactivateProofs[i],
       };
 
-      // TODO: Issue 442 - https://github.com/decentralized-identity/sidetree/issues/442
       // Use actual operation request object instead of buffer.
       const operationBuffer = Buffer.from(JSON.stringify(composedRequest));
 
@@ -646,7 +642,6 @@ export default class TransactionProcessor implements ITransactionProcessor {
         delta: updateDeltas?.[i], // Add `delta` property if chunk file found.
       };
 
-      // TODO: Issue 442 - https://github.com/decentralized-identity/sidetree/issues/442
       // Use actual operation request object instead of buffer.
       const operationBuffer = Buffer.from(JSON.stringify(composedRequest));
 

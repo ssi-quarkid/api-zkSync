@@ -10,17 +10,16 @@ import * as ethers from "ethers";
 import Web3 from "web3";
 
 
-
 function getWeb3Provider(modenaNodeConfigs: ModenaNodeConfigs) {
     const errorLogger = new ErrorLogger(modenaNodeConfigs.batchingIntervalInSeconds);
-    var options = {
+    let options = {
         keepAlive: true,
         withCredentials: false,
         timeout: 15 * 1000, // ms
     };
 
     const httpProvider = new Web3.providers.HttpProvider(modenaNodeConfigs.rpcUrl, options);
-    let walletProviderArgs = modenaNodeConfigs.walletProviderConfigs as any;
+    let walletProviderArgs = modenaNodeConfigs.walletProviderConfigs;
     walletProviderArgs.providerOrUrl = httpProvider;
     const walletProvider = new HDWalletProvider(walletProviderArgs);
     walletProvider.engine.on('error', () => {
@@ -31,14 +30,14 @@ function getWeb3Provider(modenaNodeConfigs: ModenaNodeConfigs) {
 
 function getSecondaryWeb3Provider(modenaNodeConfigs: ModenaNodeConfigs) {
     const errorLogger = new ErrorLogger(modenaNodeConfigs.batchingIntervalInSeconds);
-    var options = {
+    let options = {
         keepAlive: true,
         withCredentials: false,
         timeout: 15 * 1000, // ms
     };
     const httpProviderReader = new Web3.providers.HttpProvider(modenaNodeConfigs.secondaryRpcUrl, options);
 
-    let walletProviderArgsReader = modenaNodeConfigs.secondaryWalletProviderConfigs as any;
+    let walletProviderArgsReader = modenaNodeConfigs.secondaryWalletProviderConfigs;
     walletProviderArgsReader.providerOrUrl = httpProviderReader;
 
     const walletProviderReader = new HDWalletProvider(walletProviderArgsReader);
@@ -52,7 +51,6 @@ function getSecondaryWeb3Provider(modenaNodeConfigs: ModenaNodeConfigs) {
 
 export const getEthereumLedger = async (modenaNodeConfigs: ModenaNodeConfigs) => {
     const web3 = getWeb3Provider(modenaNodeConfigs);
-    const errorLogger = new ErrorLogger(modenaNodeConfigs.batchingIntervalInSeconds);
     const ledger = new EthereumLedger(
         web3,
         (modenaNodeConfigs.modenaAnchorContract) ? modenaNodeConfigs.modenaAnchorContract.toLowerCase() : undefined
@@ -65,7 +63,6 @@ export const getEthereumLedger = async (modenaNodeConfigs: ModenaNodeConfigs) =>
 export const getRSKLedger = async (modenaNodeConfigs: ModenaNodeConfigs) => {
 
     const web3 = getWeb3Provider(modenaNodeConfigs);
-    //TODO: Agregar parametros
     const ledger = new RSKLedger(
         web3,
         2000,
@@ -81,11 +78,10 @@ export const getZKSyncLedger = async (modenaNodeConfigs: ModenaNodeConfigs) => {
 
 
     const ethProvider = ethers.getDefaultProvider("mainnet");
-    const PRIVATE_KEY = modenaNodeConfigs.walletProviderConfigs as any;
+    const PRIVATE_KEY: any = modenaNodeConfigs.walletProviderConfigs;
     const zkSyncProvider = new zksync.Provider(modenaNodeConfigs.rpcUrl);
     const zkSyncWallet = new zksync.Wallet(PRIVATE_KEY.privateKeys[0], zkSyncProvider, ethProvider);
 
-    //TODO: Agregar parametros
     const ledger = new ZKSyncLedger(
         zkSyncWallet,
         50000,
@@ -96,3 +92,4 @@ export const getZKSyncLedger = async (modenaNodeConfigs: ModenaNodeConfigs) => {
     await ledger.initialize();
     return ledger;
 };
+

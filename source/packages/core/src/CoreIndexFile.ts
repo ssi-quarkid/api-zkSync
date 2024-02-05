@@ -205,13 +205,11 @@ export default class CoreIndexFile {
         coreIndexFileModel.coreProofFileUri,
         'core proof file URI'
       );
-    } else {
-      if (coreIndexFileModel.coreProofFileUri !== undefined) {
-        throw new SidetreeError(
-          ErrorCode.CoreIndexFileCoreProofFileUriNotAllowed,
-          `Core proof file '${coreIndexFileModel.coreProofFileUri}' not allowed in an core index file with no recovers and deactivates.`
-        );
-      }
+    } else if (coreIndexFileModel.coreProofFileUri !== undefined) {
+      throw new SidetreeError(
+        ErrorCode.CoreIndexFileCoreProofFileUriNotAllowed,
+        `Core proof file '${coreIndexFileModel.coreProofFileUri}' not allowed in an core index file with no recovers and deactivates.`
+      );
     }
 
     const coreIndexFile = new CoreIndexFile(
@@ -337,13 +335,11 @@ export default class CoreIndexFile {
    */
   private static validateCreateReferences(operationReferences: any[]) {
     for (const operationReference of operationReferences) {
-      // Only `suffixData` is allowed.
       InputValidator.validateObjectContainsOnlyAllowedProperties(
         operationReference,
         ['suffixData'],
         `create operation reference`
       );
-      // InputValidator.validateSuffixData(operationReference.suffixData);
     }
   }
 }

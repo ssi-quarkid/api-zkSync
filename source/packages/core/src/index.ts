@@ -38,7 +38,6 @@ import Operation from './Operation';
 
 import RecoverOperation from './RecoverOperation';
 import Resolver from './Resolver';
-import ServiceInfo from './ServiceInfoProvider';
 import TransactionProcessor from './TransactionProcessor';
 import UpdateOperation from './UpdateOperation';
 import VersionManager from './VersionManager';
@@ -71,7 +70,6 @@ export {
   Operation,
   RecoverOperation,
   Resolver,
-  ServiceInfo,
   TransactionProcessor,
   UpdateOperation,
   VersionManager,

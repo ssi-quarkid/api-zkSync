@@ -21,17 +21,17 @@ import * as ethers from 'ethers';
 import * as zksync from 'zksync-web3';
 import { BlockchainTimeModel, Encoder, IBlockchain, ServiceVersionModel, TransactionModel, ValueTimeLockModel } from '@extrimian-sidetree/common';
 import utils from './utils';
-import { EthereumBlock, SidetreeEventData } from './types';
+import { EthereumBlock } from './types';
 import { AnchoredDataSerializer } from '@extrimian-sidetree/core';
 import { RPCEventFetcher } from './Events';
 
 const anchorContractArtifact = require('../build/contracts/SimpleSidetreeAnchor.json');
 
-export default class ZKSyncLedger implements IBlockchain{
+export default class ZKSyncLedger implements IBlockchain {
   public ethersContract: ethers.Contract;
   protected lastSyncedBlockchainTime: number = 0;
   cachedBlockchainTime: BlockchainTimeModel | undefined;
-  private logger : Console;
+  private logger: Console;
   private networkId: number = 0;
   private eventFetcher: RPCEventFetcher;
   constructor(
@@ -42,19 +42,18 @@ export default class ZKSyncLedger implements IBlockchain{
     private rpcUrl: string,
     logger?: Console,
   ) {
-    this.logger = logger || console;
-    // super(web3, eventPullchunkSize, contractAddress, startingBlockchainTime, logger);
+    this.logger = logger ?? console;
     this.ethersContract = new ethers.Contract(contractAddress, anchorContractArtifact.abi, wallet);
-    this.eventFetcher = new RPCEventFetcher(this.rpcUrl , contractAddress , this.ethersContract )
+    this.eventFetcher = new RPCEventFetcher(this.rpcUrl, contractAddress, this.ethersContract)
 
   }
 
-  public async initialize(){
+  public async initialize() {
     this.networkId = await this.wallet.getChainId()
   }
 
   public async getLatestTime(): Promise<BlockchainTimeModel> {
-    const block: EthereumBlock = await utils.getBlock('latest' , this.rpcUrl);
+    const block: EthereumBlock = await utils.getBlock('latest', this.rpcUrl);
     const blockchainTime: BlockchainTimeModel = {
       time: block.number,
       hash: block.hash,
@@ -92,7 +91,7 @@ export default class ZKSyncLedger implements IBlockchain{
       const txn = await contract.functions.anchorHash('0x' + buffer.toString('hex').substring(4),
         numberOfOperations, { gasPrice: gasPrice, gasLimit: gas });
       debugger;
-      console.log(txn);
+
       switch (this.networkId) {
         // zk mainnet
         case 324:
@@ -129,12 +128,7 @@ export default class ZKSyncLedger implements IBlockchain{
     });
   }
 
-  // protected async getAnchorContract(): Promise<ElementContract> {
-  //   if (!this.contractAddress) {
-  //     await this.initialize();
-  //   }
-  //   return this.anchorContract;
-  // }
+
 
 
   public async getFirstValidTransaction(
@@ -163,26 +157,6 @@ export default class ZKSyncLedger implements IBlockchain{
 
 
 
-  // public _getTransactions = async (
-  //   fromBlock: number | string,
-  //   toBlock: number | string,
-  //   options?: { filter?: any; omitTimestamp?: boolean }
-  // ): Promise<TransactionModel[]> => {
-  //   const contract = await this.getAnchorContract();
-  //   const logs = await contract.getPastEvents('Anchor', {
-  //     fromBlock,
-  //     toBlock: toBlock || 'latest',
-  //     filter: (options && options.filter) || undefined,
-  //   });
-  //   const txns = logs.map((log) =>
-  //     utils.eventLogToSidetreeTransaction(log as ElementEventData)
-  //   );
-  //   if (options && options.omitTimestamp) {
-  //     return txns;
-  //   }
-  //   return utils.extendSidetreeTransactionWithTimestamp(this.web3, txns ,  this.rpcUrl);
-  // };
-
 
   public extendSidetreeTransactionWithTimestamp = async (
     transactions: TransactionModel[]
@@ -195,7 +169,7 @@ export default class ZKSyncLedger implements IBlockchain{
   //-> read clasic
   //-> read con otro _getTransactions
 
-  
+
   public _getTransactions = async (
     fromBlock: number | string,
     toBlock: number | string,
@@ -212,30 +186,25 @@ export default class ZKSyncLedger implements IBlockchain{
     if (this.isNumber(to)) {
       to = toBlock as number
     } else {
-      to = (await utils.getBlock(toBlock , this.rpcUrl)).number
+      to = (await utils.getBlock(toBlock, this.rpcUrl)).number
     }
     this.logger.log(`fetching chunked events`);
     let blockFrom = (from > this.lastSyncedBlockchainTime) ? from : this.lastSyncedBlockchainTime;
-    const { events, lastSynced } = await utils.getPastEventsChunked(this.eventFetcher , blockFrom , to , this.eventPullchunkSize);
+    const { events, lastSynced } = await utils.getPastEventsChunked(this.eventFetcher, blockFrom, to, this.eventPullchunkSize);
 
     this.logger.log(`finished fetching events`);
     if (lastSynced > this.lastSyncedBlockchainTime) {
       this.lastSyncedBlockchainTime = lastSynced
     }
-    // for( var event of events){
-    //   if ( event.blockNumber > this.lastSyncedBlockchainTime){
-    //     this.lastSyncedBlockchainTime = event.blockNumber;
-    //   }
-    // }
 
     const txns = events.map((log) =>
-    utils.eventLogToSidetreeTransaction(log as SidetreeEventData)
+      utils.eventLogToSidetreeTransaction(log)
     );
     if (options && options.omitTimestamp) {
       return txns;
     }
 
-    return utils.extendSidetreeTransactionWithTimestamp(txns , this.rpcUrl);
+    return utils.extendSidetreeTransactionWithTimestamp(txns, this.rpcUrl);
   };
 
   public _getTransactionsSince = async (
@@ -281,7 +250,7 @@ export default class ZKSyncLedger implements IBlockchain{
       // Filtra buscando la transacción con transactionNumber = sinceTransactionNumber para usarla como punto de partida
       transactions = await this._getTransactionsSince(this.startingBlockchainTime, 'latest', sinceTransactionNumber, options)
     } else if (transactionTimeHash) {
-      const block = await utils.getBlock(transactionTimeHash , this.rpcUrl);
+      const block = await utils.getBlock(transactionTimeHash, this.rpcUrl);
       if (block && block.number) {
         transactions = await this._getTransactions(
           block.number,
@@ -295,12 +264,7 @@ export default class ZKSyncLedger implements IBlockchain{
       let fromBlock: number = (this.startingBlockchainTime);
       transactions = await this._getTransactions(fromBlock, 'latest', options);
     }
-    used = process.memoryUsage();
-    console.log("after the read")
-    console.log(`Memory usage (in mb):`);
-    console.log(`  - Heap total: ${used.heapTotal / (1024 * 1024)} MB`);
-    console.log(`  - Heap used: ${used.heapUsed / (1024 * 1024)} MB`);
-    console.log(`  - RSS (Resident Set Size): ${used.rss}`);
+
     return {
       moreTransactions: false,
       transactions,

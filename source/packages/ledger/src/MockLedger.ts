@@ -20,6 +20,7 @@ import {
   TransactionModel,
   ValueTimeLockModel,
 } from '@extrimian-sidetree/common';
+
 import crypto from 'crypto';
 
 const { version } = require('../package.json');
@@ -51,7 +52,6 @@ export default class MockLedger implements IBlockchain {
   }
 
   getWriterValueTimeLock(): Promise<ValueTimeLockModel | undefined> {
-    // throw new Error('Method not implemented.');
     return Promise.resolve(undefined);
   }
 

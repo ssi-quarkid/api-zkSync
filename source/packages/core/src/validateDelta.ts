@@ -3,7 +3,7 @@ import DocumentValidator from './DocumentValidator';
 
 
 export const validateDelta = (delta: any) => {
-  
+
   validateNonArrayObject(delta, 'delta')
 
   validateObjectContainsOnlyAllowedProperties(
@@ -15,7 +15,6 @@ export const validateDelta = (delta: any) => {
   // Validate `patches` property using the DocumentComposer.
   DocumentValidator.validateDocumentPatches(delta.patches);
 
-  //TODO VALIDATE MULTIPLES DELTA
 
   delta.updateCommitment.forEach((updateCommitment: string) => validateEncodedMultihash(
     updateCommitment,
@@ -42,47 +41,41 @@ function validateNonArrayObject(
     );
   }
 }
-  /**
-   * Validates that the given object only contains allowed properties.
-   * @param inputContextForErrorLogging This string is used for error logging purposes only. e.g. 'document', or 'suffix data'.
-   */
-  function validateObjectContainsOnlyAllowedProperties(
-    input: object,
-    allowedProperties: string[],
-    inputContextForErrorLogging: string
-  ) {
-    const allowedPropertiesSet = new Set(allowedProperties);
-    for (const property in input) {
-      if (!allowedPropertiesSet.has(property)) {
-        throw new SidetreeError(
-          ErrorCode.InputValidatorInputContainsNowAllowedProperty,
-          `Property '${property}' is not allowed in '${inputContextForErrorLogging}' object.`
-        );
-      }
+/**
+ * Validates that the given object only contains allowed properties.
+ * @param inputContextForErrorLogging This string is used for error logging purposes only. e.g. 'document', or 'suffix data'.
+ */
+function validateObjectContainsOnlyAllowedProperties(
+  input: object,
+  allowedProperties: string[],
+  inputContextForErrorLogging: string
+) {
+  const allowedPropertiesSet = new Set(allowedProperties);
+  for (const property in input) {
+    if (!allowedPropertiesSet.has(property)) {
+      throw new SidetreeError(
+        ErrorCode.InputValidatorInputContainsNowAllowedProperty,
+        `Property '${property}' is not allowed in '${inputContextForErrorLogging}' object.`
+      );
     }
   }
+}
 
-   /**
-   * Validates that the given input is a multihash computed using a supported hash algorithm.
-   * @param inputContextForErrorLogging This string is used for error logging purposes only. e.g. 'document', or 'suffix data'.
-   */
-  function validateEncodedMultihash(
-    input: any,
-    inputContextForErrorLogging: string
-  ) {
-    // const inputType = typeof input;
-    // if (inputType !== 'string') {
-    //   throw new SidetreeError(
-    //     ErrorCode.EncodedMultihashMustBeAString,
-    //     `The ${inputContextForErrorLogging} must be a string but is of ${inputType} type.`
-    //   );
-    // }
+/**
+* Validates that the given input is a multihash computed using a supported hash algorithm.
+* @param inputContextForErrorLogging This string is used for error logging purposes only. e.g. 'document', or 'suffix data'.
+*/
+function validateEncodedMultihash(
+  input: any,
+  inputContextForErrorLogging: string
+) {
 
-    const supportedHashAlgorithmsInMultihashCode =
-      protocolParameters.hashAlgorithmsInMultihashCode;
-    Multihash.validateHashComputedUsingSupportedHashAlgorithm(
-      input,
-      supportedHashAlgorithmsInMultihashCode,
-      inputContextForErrorLogging
-    );
-  }
+
+  const supportedHashAlgorithmsInMultihashCode =
+    protocolParameters.hashAlgorithmsInMultihashCode;
+  Multihash.validateHashComputedUsingSupportedHashAlgorithm(
+    input,
+    supportedHashAlgorithmsInMultihashCode,
+    inputContextForErrorLogging
+  );
+}

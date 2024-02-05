@@ -58,7 +58,6 @@ export default class Jwk {
   ): Promise<Buffer> {
     const seed = await bip39.mnemonicToSeed(mnemonic);
     const root = hdkey.fromMasterSeed(seed);
-    // TODO: 60 is specific to ethereum, we could use another value unique to sidetree
     const hdPath = `m/44'/60'/0'/0/${index}`;
     const addrNode = root.derive(hdPath);
     return addrNode.privateKey;

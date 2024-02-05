@@ -108,14 +108,14 @@ export default class VersionManager
         version,
         'BatchWriter'
       );
-      
+
       const batchWriter = new BatchWriter(
         operationQueue,
         blockchain,
         cas,
         this
       );
-      
+
       this.batchWriters.set(version, batchWriter);
       this.references.push(batchWriter);
 
@@ -174,10 +174,10 @@ export default class VersionManager
    * Gets the corresponding version of the `IOperationProcessor` based on the given blockchain time.
    */
   public getOperationProcessor(blockchainTime: number): IOperationProcessor {
-    
+
     const version = this.getVersionString(blockchainTime);
     const operationProcessor = this.operationProcessors.get(version)!;
-    
+
     return operationProcessor;
   }
 

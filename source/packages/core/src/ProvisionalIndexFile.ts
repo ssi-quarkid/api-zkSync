@@ -24,7 +24,7 @@ export default class ProvisionalIndexFile {
   private constructor(
     public readonly model: ProvisionalIndexFileModel,
     public readonly didUniqueSuffixes: string[]
-  ) {}
+  ) { }
 
   /**
    * Parses and validates the given provisional index file buffer.
@@ -76,7 +76,7 @@ export default class ProvisionalIndexFile {
       provisionalIndexFileModel.chunks
     );
 
-    const didSuffixes = await ProvisionalIndexFile.validateOperationsProperty(
+    const didSuffixes = ProvisionalIndexFile.validateOperationsProperty(
       provisionalIndexFileModel.operations
     );
 

@@ -53,7 +53,7 @@ export default class EthereumLedger implements IBlockchain {
     logger?: Console,
     //public blockchainSecurity: number = 10
   ) {
-    this.logger = logger || console;
+    this.logger = logger ?? console;
     if (this.contractAddress) {
       this.anchorContract = new Contract(
         anchorContractArtifact.abi,
@@ -64,7 +64,6 @@ export default class EthereumLedger implements IBlockchain {
     }
     this.anchorContract.setProvider(this.web3.currentProvider);
 
-    // this.anchorContract.options.gasPrice = '1200000000';
   }
 
   getServiceVersion(): Promise<ServiceVersionModel> {
@@ -93,7 +92,6 @@ export default class EthereumLedger implements IBlockchain {
       });
       const gas = await deployContract.estimateGas();
       const currentGasPrice = await this.web3.eth.getGasPrice();
-      // const gasPrice = (parseInt(currentGasPrice) * 1.1).toString();
       const gasPrice = currentGasPrice.toString();
 
       this.anchorContract.options.gasPrice = gasPrice;
@@ -254,7 +252,7 @@ export default class EthereumLedger implements IBlockchain {
         // Ganache
         case 13370:
           this.logger.info(
-            `Ethereum transaction successful: ${txn.transactionHash}`
+            `Ganache transaction successful: ${txn.transactionHash}`
           );
           break;
         //rsk

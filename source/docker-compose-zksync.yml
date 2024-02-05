@@ -2,7 +2,7 @@ version: "3.7"
 services:
     modena:
         container_name: modena-zksync
-        image: vriera/modena-zksync:latest
+        image: modena-val:latest
         extra_hosts:
             - host.docker.internal:host-gateway
         ports: 
@@ -10,14 +10,21 @@ services:
         environment:
             - DID_METHOD_NAME=quarkid:zksync
             - CONTENT_ADDRESSABLE_STORE_SERVICE_URI=http://20.121.1.184:5001/
-            - DATABASE_NAME=quarkid-zksync
-            - RPC_URL=https://zksync2-testnet.zksync.dev
+            - DATABASE_NAME=modena-zksync-master
+            - RPC_URL=https://mainnet.era.zksync.io
             - MONGO_DB_CONNECTION_STRING=mongodb://host.docker.internal:27017
             - MAX_CONCURRENT_DOWNLOADS=20
             - OBSERVING_INTERVAL_IN_SECONDS=5
             - BATCHING_INTERVAL_IN_SECONDS=10
             - STARTING_BLOCKCHAIN_TIME=2652485
             - BLOCKCHAIN_VERSION=latest
-            - MODENA_ANCHOR_CONTRACT=0xE7951D5e91Aee502507A32C97B6bf77033bb29E7
-            - WALLET_PRIVATE_KEY=0x73833c39bfbe882cece62e9afe4616641f1b8f08d90d1dc8a9b54ebde8cb4b23
+            - MODENA_ANCHOR_CONTRACT=xxxxxxxxx
+            - WALLET_PRIVATE_KEY=xxxxxxxxx
             - LEDGER_TYPE=zksync
+    mongo:
+      image: mongo:5.0.15
+      restart: always
+      expose:
+        - 27017
+      ports:
+        - 27017:27017

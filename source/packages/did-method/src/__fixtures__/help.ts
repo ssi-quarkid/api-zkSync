@@ -42,7 +42,6 @@ export const clearCollection = async (collectionName: string) => {
   );
   const db = await client.db(sidetreeTestNodeCoreConfig.databaseName);
   const collection = db.collection(collectionName);
-  //   const documents = await collection.find({}).toArray();
   await collection.deleteMany({});
   await client.close();
 };

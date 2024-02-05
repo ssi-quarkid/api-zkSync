@@ -16,7 +16,7 @@
 export interface EthereumBlock {
   number: number,
   hash: string,
-  timestamp: number|string,
+  timestamp: number | string,
 };
 
 export type EthereumFilter = any;
@@ -25,15 +25,12 @@ export interface SidetreeEventData {
   blockHash: string;
   blockNumber: number;
   address: string;
-    returnValues: {
-      anchorFileHash: string;
-      numberOfOperations: string;
+  returnValues: {
+    anchorFileHash: string;
+    numberOfOperations: string;
     transactionNumber: string;
     writer: string;
   };
 }
 
-// export interface ElementContract extends Contract {
-//   setProvider: Function;
-// }
 

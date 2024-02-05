@@ -1,6 +1,6 @@
 export DID_METHOD_NAME=quarkid:zksync
 export CONTENT_ADDRESSABLE_STORE_SERVICE_URI=http://13.90.44.218:5001/
-export DATABASE_NAME=modena-zksync-master-f7
+export DATABASE_NAME=modena-zksync-debug
 export RPC_URL=https://mainnet.era.zksync.io
 export MONGO_DB_CONNECTION_STRING=mongodb://localhost:27017/
 export MAX_CONCURRENT_DOWNLOADS=20
@@ -11,6 +11,7 @@ export BLOCKCHAIN_VERSION=latest
 export MODENA_ANCHOR_CONTRACT=0xe0055B74422Bec15cB1625792C4aA0beDcC61AA7
 export WALLET_PRIVATE_KEY=5f7eeaefc78fce9c07ed6a068762006360f632e5d1c34d2499f19226dcc98575
 export LEDGER_TYPE=zksync
+export NODE_ENV=development
 # export DID_METHOD_NAME=quarkid:zksync
 # export CONTENT_ADDRESSABLE_STORE_SERVICE_URI=http://13.90.44.218:5001/
 # export DATABASE_NAME=modena-zksync-testnet-v2
@@ -24,7 +25,7 @@ export LEDGER_TYPE=zksync
 # export MODENA_ANCHOR_CONTRACT=0xE7951D5e91Aee502507A32C97B6bf77033bb29E7
 # export WALLET_PRIVATE_KEY=0x774a5e8d73e3487dd3702cea126f3a5a740b6b703b8419478e24686fb2ced6f3
 # export LEDGER_TYPE=zksync
+
 cd ..
 cd ..
-node --expose-gc dist/src/main.js
-# npx nest start --debug --watch 
+npx nest start

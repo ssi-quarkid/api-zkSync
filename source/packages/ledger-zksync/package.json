@@ -1,14 +1,7 @@
 {
   "name": "@extrimian-sidetree/zksync",
-  "publishConfig": {
-    "access": "public"
-  },
-  "author": "Orie Steele (https://github.com/OR13)",
-  "contributors": [
-    "Orie Steele (https://github.com/OR13)",
-    "gjgd (https://github.com/gjgd)"
-  ],
-  "module": "dist/ethereum.esm.js",
+  "author": "vriera",
+
   "version": "1.0.0",
   "license": "Apache-2.0",
   "main": "dist/index.js",

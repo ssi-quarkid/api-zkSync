@@ -1,12 +1,10 @@
-import { stringify } from "querystring";
 import config from "../../config/modena-node-config.json";
 import wallet from "../../config/wallet-provider-config.json";
-import { ModenaNodeConfigs, InputOptions } from '@extrimian-sidetree/did-method-modena';
-import { Url } from "url";
+import { InputOptions } from '@extrimian-sidetree/did-method-modena';
+
 
 
 export class ModenaConfig {
-    constructor() { };
 
     public get didMethodName(): string {
         return process.env.DID_METHOD_NAME || config.didMethodName;
@@ -69,25 +67,9 @@ export class ModenaConfig {
         return walletProviderConfig
     }
 
-    //private starknetProviderConfigs(): StarkNetAccount {
-    //    let account = wallet as any as StarkNetAccount;
-    //    if (process.env.WALLET_PRIVATE_KEY)
-    //        account['privateKey'] = process.env.WALLET_PRIVATE_KEY;
-    //    if (process.env.ACCOUNT_ADDRESS)
-    //        account['accountAddress'] = process.env.ACCOUNT_ADDRESS;
-    //    return account;
-    //}
 
-    public get walletProviderConfigs(): InputOptions  {
-        const ledgerType = process.env.LEDGER_TYPE || config.ledgerType;
-        switch (ledgerType) {
-            case 'rsk':
-                return this.ethWalletProviderConfigs() as InputOptions;
-            case 'eth':
-                return this.ethWalletProviderConfigs() as InputOptions;
-            default:
-                return this.ethWalletProviderConfigs() as InputOptions;
-        }
+    public get walletProviderConfigs(): InputOptions {
+        return this.ethWalletProviderConfigs();
     }
 
 

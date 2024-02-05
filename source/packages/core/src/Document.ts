@@ -33,8 +33,10 @@ export default class Document {
     document: DocumentModel,
     keyId: string
   ): PublicKeyModel | undefined {
-    for (let i = 0; i < document.publicKeys.length; i++) {
-      const publicKey = document.publicKeys[i];
+    if (!document.publicKeys)
+      return undefined
+    for (const publicKey of document.publicKeys) {
+      ;
 
       if (publicKey.id === keyId) {
         return publicKey;

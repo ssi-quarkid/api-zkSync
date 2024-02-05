@@ -1,8 +1,8 @@
+
 import { MockCas } from '@extrimian-sidetree/cas';
 import { Modena } from "./Modena";
 import { ModenaNodeConfigs } from "./Types";
 export { ModenaNodeConfigs }
-// import { IpfsCasWithCache } from "@extrimian-sidetree/cas-ipfs";
 import Ipfs from '@decentralized-identity/sidetree/dist/lib/ipfs/Ipfs';
 import { InputOptions } from "@truffle/hdwallet-provider/dist/constructor/Constructor";
 import { getEthereumLedger, getRSKLedger, getZKSyncLedger } from "./LedgerProvider";
@@ -15,8 +15,7 @@ export { InputOptions };
 
 const getLedger = async (modenaNodeConfigs: ModenaNodeConfigs) => {
     switch (modenaNodeConfigs.ledgerType) {
-        //case 'starknet':
-        //    return await getStarknetLedger(modenaNodeConfigs);
+
         case 'rsk':
             return await getRSKLedger(modenaNodeConfigs);
         case 'eth':
@@ -38,10 +37,7 @@ const getCas = async (config: ModenaNodeConfigs) => {
     const cas = new Ipfs(
         config.contentAddressableStoreServiceUri,
         10
-        // config.mongoDbConnectionString,
-        // config.databaseName
     );
-    // await cas.initialize();
     return cas;
 };
 
@@ -66,7 +62,9 @@ export const getNodeInstance = async (
 ): Promise<Modena> => {
 
     const ledger = await getLedger(modenaNodeConfigs);
+    // const ledger = new MockLedger();
     const cas = await getCas(modenaNodeConfigs);
+    // const cas = new MockCas();
     const modena = new Modena(
         modenaNodeConfigs as any,
         modenaNodeConfigs.versions,

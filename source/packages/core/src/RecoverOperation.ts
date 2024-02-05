@@ -136,10 +136,7 @@ export default class RecoverOperation implements OperationModel {
       signedData.deltaHash,
       'recover operation delta hash'
     );
-    // InputValidator.validateEncodedMultihash(
-    //   signedData.recoveryCommitment,
-    //   'recover operation next recovery commitment'
-    // );
+
 
     return signedData;
   }

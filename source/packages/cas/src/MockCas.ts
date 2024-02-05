@@ -29,12 +29,10 @@ export default class MockCas implements ICasService {
 
   async initialize(): Promise<void> {
     this.initialized = true;
-    return;
   }
 
   async close(): Promise<void> {
     this.initialized = false;
-    return;
   }
 
   public getServiceVersion: () => Promise<ServiceVersionModel> = () => {

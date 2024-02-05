@@ -83,12 +83,7 @@ export default class Encoder {
    * @throws SidetreeError if input is not a Base64URL string.
    */
   private static validateBase64UrlString(input: any) {
-    if (typeof input !== 'string') {
-      // throw new SidetreeError(
-      //   ErrorCode.EncoderValidateBase64UrlStringInputNotString,
-      //   `Input '${input}' not a string.`
-      // );
-    }
+
 
     if (Array.isArray(input)) {
       input.forEach((x: any) => {

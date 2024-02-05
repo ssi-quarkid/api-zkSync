@@ -6,13 +6,15 @@ Dada una configuracion correcta es posible conectar un nodo a una red existente 
 
 ## Diseño
 
-Comenzando como un fork de la implementación referencia de [element Sidetree](https://github.com/decentralized-identity/element) dejando solo lo requerido pero con el Core intacto.
+Comenzando como un fork de la implementación referencia de [element Sidetree](https://github.com/decentralized-identity/element) manteniendo varias partes del core intactas.
 
 Los siguientes paquetes fueron agregados:
 
 - [did-method-modena](packages/did-method-modena/README_ES.md)
 - [did-method-modena-api](packages/did-method-modena-api/README_ES.md)
 - [ledger-starknet](packages/ledger-starknet/README_ES.md)
+- [ledger-zksync](packages/ledger-zksync/README_ES.md)
+- [ledger-rsk](packages/ledger-rsk/README_ES.md)
 
 <br>
 
@@ -61,33 +63,33 @@ Las configuraciones se pueden definir por medio de variables de entorno o modifi
 
 - **WALLET_PRIVATE_KEY:** Clave privada de la cuenta con la que se va a pagar las transacciones de escritura.
 
-- **LEDGER_TYPE:** 'eth' para tipo Ethereum o 'starknet' para StarkNet.
 
-- **ACCOUNT_ADDRESS (required for StarkNet only):** Dirección para el contrato de la cuenta.
-          
+- **LEDGER_TYPE:** 'eth' para tipo Ethereum, 'starknet' para StarkNet, 'rsk' para polling en chunks, 'zksync' para utilizar wallet ethers (mejor explicado en los otros readme)
+
+- **ACCOUNT_ADDRESS (solo requerido en starknet):** Dirección para el contrato de la cuenta.
+
+- **SECONDARY_WALLET_PRIVATE_KEY: (opcional en zksync)** Clave privada de la cuenta con la que va a realizar la lectura en 'zksync'
+
+- **SECONDARY_RPC_URL:(opcional en zksync)** RPC para la wallet que lee de la blockchain en 'zksync'
+
 Ejemplos para la configuracion por medio de variable de entorno se pueden encontrar en los archivos de docker-compose.
 
 ## Desplegar localmente
 
-Se requiere node y npm instalados previamente, luego descargar globalmente los siguientes paquetes:
+Se requiere node y yarn instalados previamente, luego descargar globalmente los siguientes paquetes:
 
 
 ```bash
 $ npm install -g @nestjs/cli
-
-$ npm install -g lerna
 ```
-
-*Nota: EL proyecto se testeo con node 14.19.0 y con npm 8.5.4*
-
 
 Luego exporte las variables de entorno deseadas y corra:
 
 ```bash
 # Limpiar el repo
-$ lerna clean
+$ yarn clean
 # Descargar las depedencias y compilar
-$ lerna run bootstrap --hoist
+$ yarn
 # Correr una instancia
 $ cd packages/did-method-modena-api
 $ nest start
@@ -95,18 +97,21 @@ $ nest start
 
 ## Despliguege en Docker
 
-El dockerfiles y los archivos de docker-compose se encuentran en la raíz del proyecto.
+El dockerfile y los archivos de docker-compose se encuentran en la raíz del proyecto.
 
 - **docker-compose-modena.yml** crea una instance de modena corriendo en Matic.
-- **docker-compose-tangoid-starknet.yml** creates an instance for modena running on StarkNet.
+- **docker-compose-rsk.yml** crea una instance de modena corriendo en rsk.
+- **docker-compose-bnb.yml** crea una instance de modena corriendo en bnb.
+- **docker-compose-zksync.yml** crea una instance de modena corriendo en zksync.
+
 
 ### Ejemplo
 
 ```bash
 # Limpiar el repo
-$ lerna clean
+$ yarn clean
 # Correr el compose
-$ docker-compose -f docker-compose-tangoid-starknet.yml
+$ docker-compose -f docker-compose-zksync.yml
 # Checkear si el contenedor esta funcionando
 $ docker ps
 ```

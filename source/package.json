@@ -17,15 +17,18 @@
       "packages/did-method-modena-api"
     ],
   "scripts": {
-    "start": "cd packages/did-method-modena-api/ && npm run start",
     "build": "yarn workspaces run build",
     "clean": "find . \\( -name 'node_modules' -o -name 'dist' -o -name 'lib' \\) -type d -prune -exec rm -rf '{}' +",
-    "clean:lock": "npx lerna exec 'rm -rf package-lock.json node_modules' --stream",
     "postinstall": "yarn workspaces run build",
-    "install:clean": " npx lerna clean -y && rm -rf node_modules && npm i"
-  },
-  "dependencies": {
-    "yarn": "1.22.19 ",
-    "@babel/types": "7.22.10"
+    "lint": "npx lerna run lint --stream",
+    "lint:fix": "npx lerna run lint:fix --stream",
+    "pretest": "docker-compose -f ./docker-compose.yml up --detach --remove-orphans",
+    "test": "npx lerna run test --stream --concurrency 1",
+    "test:only": "npm t -- --scope",
+    "install:clean": " npx lerna clean -y && rm -rf node_modules && npm i",
+    "publish:stable:patch": "npx lerna publish patch --force-publish --stream",
+    "publish:stable:minor": "npx lerna publish minor --stream",
+    "publish:stable:major": "npx lerna publish major --stream",
+    "publish:unstable": "npx lerna publish prerelease --preid unstable --yes --stream"
   }
 }

@@ -84,9 +84,9 @@ export default class ChunkFile {
     updateOperations: UpdateOperation[]
   ): Promise<Buffer | undefined> {
     const deltas = [];
-    deltas.push(...createOperations.map((operation) => operation.delta!));
-    deltas.push(...recoverOperations.map((operation) => operation.delta!));
-    deltas.push(...updateOperations.map((operation) => operation.delta!));
+    deltas.push(...createOperations.map((operation) => operation.delta));
+    deltas.push(...recoverOperations.map((operation) => operation.delta));
+    deltas.push(...updateOperations.map((operation) => operation.delta));
 
     if (deltas.length === 0) {
       return undefined;

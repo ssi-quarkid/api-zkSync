@@ -73,9 +73,13 @@ export default class DownloadManager {
       const completedDownloadHandles = [];
       for (const [downloadHandle, downloadInfo] of this.activeDownloads) {
         if (downloadInfo.completed) {
+
+          if (!downloadInfo.fetchResult)//should never happen
+            throw new Error("No download info")
+
           this.completedDownloads.set(
             downloadHandle,
-            downloadInfo.fetchResult!
+            downloadInfo.fetchResult
           );
           completedDownloadHandles.push(downloadHandle);
 
@@ -157,11 +161,13 @@ export default class DownloadManager {
 
     const fetchResult = this.completedDownloads.get(handle);
     this.completedDownloads.delete(handle);
+    if (!fetchResult)
+      throw new Error("No fetch result")
 
     EventEmitter.emit(EventCode.SidetreeDownloadManagerDownload, {
-      code: fetchResult!.code,
+      code: fetchResult.code,
     });
-    return fetchResult!;
+    return fetchResult;
   }
 
   /**

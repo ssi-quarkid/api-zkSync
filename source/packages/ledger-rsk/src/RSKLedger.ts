@@ -69,11 +69,7 @@ export default class RSKLedger extends EthereumLedger {
     if (lastSynced > this.lastSyncedBlockchainTime) {
       this.lastSyncedBlockchainTime = lastSynced
     }
-    // for( var event of events){
-    //   if ( event.blockNumber > this.lastSyncedBlockchainTime){
-    //     this.lastSyncedBlockchainTime = event.blockNumber;
-    //   }
-    // }
+
     const txns = events.map((log) =>
       ethereumLedgerUtils.eventLogToSidetreeTransaction(log as ElementEventData)
     );

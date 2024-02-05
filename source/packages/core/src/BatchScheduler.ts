@@ -2,6 +2,7 @@ import {
   ErrorCode,
   IBlockchain,
   IVersionManager,
+  LogColor,
   Logger,
   SidetreeError,
 } from '@extrimian-sidetree/common';
@@ -24,7 +25,7 @@ export default class BatchScheduler {
     private versionManager: IVersionManager,
     private blockchain: IBlockchain,
     private batchingIntervalInSeconds: number
-  ) {}
+  ) { }
 
   /**
    * The function that starts periodically anchoring operation batches to blockchain.
@@ -85,6 +86,22 @@ export default class BatchScheduler {
         loopFailureEventData
       );
     } finally {
+      let used = process.memoryUsage();
+      console.log("before the collection")
+      console.log(`Memory usage (in bytes):`);
+      console.log(`  - Heap total: ${used.heapTotal / (1024 * 1024)} MB`);
+      console.log(`  - Heap used: ${used.heapUsed / (1024 * 1024)} MB`);
+      console.log(`  - RSS (Resident Set Size): ${used.rss}`);
+      if (global.gc) {
+        Logger.info(LogColor.green(`Running garbage collection, write`));
+        global.gc();
+        let used = process.memoryUsage();
+        console.log("after the collection")
+        console.log(`Memory usage (in bytes):`);
+        console.log(`  - Heap total: ${used.heapTotal / (1024 * 1024)} MB`);
+        console.log(`  - Heap used: ${used.heapUsed / (1024 * 1024)} MB`);
+        console.log(`  - RSS (Resident Set Size): ${used.rss}`);
+      }
       Logger.info(`End batch writing. Duration: ${endTimer.rounded()} ms.`);
 
       if (this.continuePeriodicBatchWriting) {

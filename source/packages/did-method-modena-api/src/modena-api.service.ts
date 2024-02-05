@@ -1,4 +1,4 @@
-import { Body, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Modena, getNodeInstance, ModenaNodeConfigs } from '@extrimian-sidetree/did-method-modena';
 import { ModenaConfig } from './enviroments/config'
 import CachedEventEmitter from './state/CachedEventEmitter'
@@ -6,9 +6,8 @@ import { DebugDto } from './dto/DebugDto';
 import { EventCode } from './state/EventCode';
 import EventStatus from './state/EventStatus';
 import { Encoder, JsonCanonicalizer } from '@extrimian-sidetree/common';
-const base64regex = /^[0-9a-zA-Z+_\-]*$/;
+const base64regex = /^[0-9a-zA-Z+_-]*$/;
 
-//const modenaConfig = require('../config/mode-node-config.json')
 @Injectable()
 export class AppService {
 
@@ -37,7 +36,7 @@ export class AppService {
   }
 
 
-  healthcheckRead(): Boolean {
+  healthcheckRead(): boolean {
     const failed = this.eventEmitter.events.get(EventCode.SidetreeBatchWriterLoopFailure)
     const success = this.eventEmitter.events.get(EventCode.SidetreeBatchWriterLoopSuccess)
     return this.healthcheck(this.modenaNodeConfings.observingIntervalInSeconds * 5, failed, success)
@@ -45,7 +44,7 @@ export class AppService {
 
 
 
-  healthcheckWrite(): Boolean {
+  healthcheckWrite(): boolean {
     const failed = this.eventEmitter.events.get(EventCode.SidetreeBatchWriterLoopFailure)
     const success = this.eventEmitter.events.get(EventCode.SidetreeBatchWriterLoopSuccess)
     return this.healthcheck(this.modenaNodeConfings.batchingIntervalInSeconds * 4, failed, success)
@@ -95,16 +94,16 @@ export class AppService {
 
     return operation0.body;
   }
-  async getLongDID(uniqueSuffix){
+  async getLongDID(uniqueSuffix) {
     const did = `did:${this.modenaNodeConfings.didMethodName}:${uniqueSuffix}`;
     const operation1 = await this.modenaCore.handleResolveRequest(did);
-    if(!operation1.body?.didDocument)
+    if (!operation1.body?.didDocument)
       return 'Did not Found';
     const encodedBody = Encoder.encode(
       JsonCanonicalizer.canonicalizeAsBuffer(operation1.body?.didDocument)
     );
     return did + ":" + encodedBody;
-  
+
   }
   async getDID(uniqueSuffix) {
     const did = `did:${this.modenaNodeConfings.didMethodName}:${uniqueSuffix}`;
@@ -126,7 +125,7 @@ export class AppService {
     return operation1;
   }
 
-  validateIdentifier(did: String): boolean {
+  validateIdentifier(did: string): boolean {
 
     console.log("validating did:")
     console.log(did);

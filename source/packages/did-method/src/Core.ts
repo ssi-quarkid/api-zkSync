@@ -108,7 +108,6 @@ export default class Core {
       config.observingIntervalInSeconds
     );
 
-    // this.monitor = new Monitor();
   }
 
   /**
@@ -203,7 +202,7 @@ export default class Core {
     const currentTime = this.blockchainClock.getTime()!;
     const requestHandler = this.versionManager.getRequestHandler(currentTime);
     const response = requestHandler.handleOperationRequest(request);
-    
+
     return response;
   }
 
