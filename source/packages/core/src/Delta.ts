@@ -3,7 +3,7 @@ import {
   Logger,
   protocolParameters,
   SidetreeError,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import JsonCanonicalizer from './util/JsonCanonicalizer';
 import Operation from './Operation';

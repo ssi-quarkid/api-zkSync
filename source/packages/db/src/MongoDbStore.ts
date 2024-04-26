@@ -1,5 +1,5 @@
 import { Collection, Db, MongoClient } from 'mongodb';
-import { Logger } from '@extrimian-sidetree/common';
+import { Logger } from '@quarkid-sidetree/common';
 
 /**
  * Base class that contains the common MongoDB collection setup.
@@ -20,7 +20,7 @@ export default class MongoDbStore {
     private serverUrl: string,
     private collectionName: string,
     private databaseName: string
-  ) {}
+  ) { }
 
   /**
    * Initialize the MongoDB transaction store.

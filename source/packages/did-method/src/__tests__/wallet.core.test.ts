@@ -1,4 +1,4 @@
-// import vectors from '@extrimian-sidetree/test-vectors';
+// import vectors from '@quarkid-sidetree/test-vectors';
 // import Core from '../Core';
 
 // import {

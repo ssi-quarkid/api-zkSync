@@ -14,7 +14,7 @@
 
 import utils from './utils';
 
-import { AnchoredDataSerializer } from '@extrimian-sidetree/core';
+import { AnchoredDataSerializer } from '@quarkid-sidetree/core';
 
 
 import {
@@ -24,7 +24,7 @@ import {
   ValueTimeLockModel,
   ServiceVersionModel,
   Encoder,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import {
   ElementContract,

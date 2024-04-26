@@ -1,5 +1,5 @@
 
-import { LogColor, Logger } from "@extrimian-sidetree/common";
+import { LogColor, Logger } from "@quarkid-sidetree/common";
 
 export class ErrorLogger {
     private shouldLog: boolean = true;

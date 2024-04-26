@@ -23,7 +23,7 @@ import {
   SidetreeError,
   PublicKeyJwk,
   PrivateKeyJwk,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import { sign, verify } from '@sidetree/crypto';
 

@@ -1,4 +1,4 @@
-import { IEventEmitter, LogColor, Logger } from '@extrimian-sidetree/common';
+import { IEventEmitter, LogColor, Logger } from '@quarkid-sidetree/common';
 
 /**
  * Event emitter used in Sidetree.

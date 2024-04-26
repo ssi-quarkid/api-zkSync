@@ -6,7 +6,7 @@ import {
   OperationType,
   SidetreeError,
   SuffixDataModel
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import CreateOperation from './CreateOperation';
 import Delta from './Delta';

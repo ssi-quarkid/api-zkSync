@@ -10,7 +10,7 @@ import {
   IBatchWriter,
   AnchoredData,
   protocolParameters,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import AnchoredDataSerializer from './AnchoredDataSerializer';
 import ChunkFile from './ChunkFile';

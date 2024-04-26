@@ -9,7 +9,7 @@ import {
   IOperationQueue,
   DidState,
   SidetreeError,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 // import Delta from './Delta';
 import Did from './Did';

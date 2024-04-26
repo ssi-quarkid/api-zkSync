@@ -3,7 +3,7 @@ import {
   ErrorCode,
   protocolParameters,
   SidetreeError,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 /**
  * Encapsulates functionality to serialize/deserialize data that read/write to

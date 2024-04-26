@@ -5,7 +5,7 @@ import {
   TransactionModel,
   UnresolvableTransactionModel,
   IUnresolvableTransactionStore,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 /**
  * Implementation of `IUnresolvableTransactionStore` that stores the transaction data in a MongoDB database.

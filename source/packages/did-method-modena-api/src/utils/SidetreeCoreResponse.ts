@@ -1,4 +1,4 @@
-import { ResponseStatus, ResponseModel } from "@extrimian-sidetree/common";
+import { ResponseStatus, ResponseModel } from "@quarkid-sidetree/common";
 import { BadRequestException, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 
 export function validateSidetreeResponse(response: ResponseModel) {

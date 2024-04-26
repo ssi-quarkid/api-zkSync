@@ -1,6 +1,6 @@
 // import { getNodeInstance } from "../src/provider";
 // // import { clearCollection } from "./utils";
-// import vectors from '@extrimian-sidetree/test-vectors';
+// import vectors from '@quarkid-sidetree/test-vectors';
 // import { Modena } from "../src/Modena";
 // import HDWalletProvider from "@truffle/hdwallet-provider";
 // // import { clearCollection } from '../test/utils';

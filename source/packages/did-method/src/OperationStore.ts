@@ -2,7 +2,7 @@
 import {
   IOperationStore,
   AnchoredOperationModel,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 
 /**
@@ -11,8 +11,8 @@ import {
  */
 export default class
   implements IOperationStore {
-  
-    public async insertOrReplace(
+
+  public async insertOrReplace(
     _operations: AnchoredOperationModel[]
   ): Promise<void> {
 
@@ -26,7 +26,7 @@ export default class
   }
 
   public async delete(_transactionNumber?: number): Promise<void> {
- 
+
   }
 
   public async deleteUpdatesEarlierThan(
@@ -34,7 +34,7 @@ export default class
     _transactionNumber: number,
     _operationIndex: number
   ): Promise<void> {
-   
+
   }
 
 

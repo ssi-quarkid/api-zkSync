@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { Modena, getNodeInstance, ModenaNodeConfigs } from '@extrimian-sidetree/did-method-modena';
+import { Modena, getNodeInstance, ModenaNodeConfigs } from '@quarkid-sidetree/did-method-modena';
 import { ModenaConfig } from './enviroments/config'
 import CachedEventEmitter from './state/CachedEventEmitter'
 import { DebugDto } from './dto/DebugDto';
 import { EventCode } from './state/EventCode';
 import EventStatus from './state/EventStatus';
-import { Encoder, JsonCanonicalizer } from '@extrimian-sidetree/common';
+import { Encoder, JsonCanonicalizer } from '@quarkid-sidetree/common';
 const base64regex = /^[0-9a-zA-Z+_-]*$/;
 
 @Injectable()

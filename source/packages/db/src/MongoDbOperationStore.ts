@@ -6,7 +6,7 @@ import {
   OperationType,
   IOperationStore,
   AnchoredOperationModel,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 /**
  * Sidetree operation stored in MongoDb.
  * Note: We use shorter property names such as "opIndex" instead of "operationIndex" to ensure unique index compatibility between MongoDB implementations.
@@ -78,14 +78,14 @@ export default class MongoDbOperationStore extends MongoDbStore
    * Gets all operations of the given DID unique suffix in ascending chronological order.
    */
   public async get(didUniqueSuffix: string): Promise<AnchoredOperationModel[]> {
-    
+
     const mongoOperations = await this.collection!.find({
       didSuffix: didUniqueSuffix,
     })
       .sort({ didSuffix: 1, txnNumber: 1, opIndex: 1 })
       .maxTimeMS(MongoDbStore.defaultQueryTimeoutInMilliseconds)
       .toArray();
-      
+
 
     return mongoOperations.map((operation) => {
       return MongoDbOperationStore.convertToAnchoredOperationModel(operation);

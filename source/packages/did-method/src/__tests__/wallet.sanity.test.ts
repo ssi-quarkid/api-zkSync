@@ -1,5 +1,5 @@
-// import vectors from '@extrimian-sidetree/test-vectors';
-// import { SidetreeWalletPlugin } from '@extrimian-sidetree/wallet';
+// import vectors from '@quarkid-sidetree/test-vectors';
+// import { SidetreeWalletPlugin } from '@quarkid-sidetree/wallet';
 // const wallet = SidetreeWalletPlugin.build();
 
 // const methodName = 'example';

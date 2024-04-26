@@ -15,7 +15,7 @@ import {
   IBlockchain,
   IBatchWriter,
   AbstractVersionMetadata,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import DownloadManager from './DownloadManager';
 import Resolver from './Resolver';

@@ -11,7 +11,7 @@ import {
   SidetreeError,
   SharedErrorCode,
   LogColor,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import timeSpan from 'time-span';
 import EventCode from './EventCode';

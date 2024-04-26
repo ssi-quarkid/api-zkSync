@@ -19,7 +19,7 @@ import {
   ServiceVersionModel,
   TransactionModel,
   ValueTimeLockModel,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import crypto from 'crypto';
 

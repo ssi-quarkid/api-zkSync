@@ -23,7 +23,7 @@ import {
   protocolParameters,
   SidetreeError,
   ValueTimeLockModel,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 /**
  * Encapsulates the functionality to compute and verify the value time lock amounts.

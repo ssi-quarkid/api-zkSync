@@ -5,7 +5,7 @@ import {
   IOperationQueue,
   QueuedOperationModel,
   SidetreeError,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 /**
  * Sidetree operation stored in MongoDb.
@@ -48,18 +48,18 @@ export default class MongoDbOperationQueue implements IOperationQueue {
 
   async enqueue(didUniqueSuffix: string, operationBuffer: Buffer) {
     try {
-      
+
       const queuedOperation: IMongoQueuedOperation = {
         didUniqueSuffix,
         operationBufferBsonBinary: new Binary(operationBuffer),
       };
 
       const result = await this.collection!.insertOne(queuedOperation);
-      
+
       console.log(result);
-      
+
     } catch (error) {
-      
+
       // Duplicate insert errors (error code 11000).
       if (error.code === 11000) {
         throw new SidetreeError(ErrorCode.BatchWriterAlreadyHasOperationForDid);

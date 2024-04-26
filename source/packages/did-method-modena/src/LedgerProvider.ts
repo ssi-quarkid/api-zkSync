@@ -1,6 +1,6 @@
-import { RSKLedger } from '@extrimian-sidetree/rsk';
-import { ZKSyncLedger } from '@extrimian-sidetree/zksync';
-import { EthereumLedger } from "@extrimian-sidetree/ethereum";
+import { RSKLedger } from '@quarkid-sidetree/rsk';
+import { ZKSyncLedger } from '@quarkid-sidetree/zksync';
+import { EthereumLedger } from "@quarkid-sidetree/ethereum";
 import { ModenaNodeConfigs } from "./Types";
 import { ErrorLogger } from "./ErrorLogger";
 import HDWalletProvider from "@truffle/hdwallet-provider";

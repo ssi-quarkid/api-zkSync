@@ -17,13 +17,13 @@
  * limitations under the License.
  */
 
-import { IVersionManager, TransactionModel } from '@extrimian-sidetree/common';
+import { IVersionManager, TransactionModel } from '@quarkid-sidetree/common';
 
 /**
  * Keeps track of current block and throughput limits based on the state
  */
 export default class ThroughputLimiter {
-  constructor(private versionManager: IVersionManager) {}
+  constructor(private versionManager: IVersionManager) { }
 
   /**
    * given a an array of transactions, return an array of qualified transactions per transaction time.

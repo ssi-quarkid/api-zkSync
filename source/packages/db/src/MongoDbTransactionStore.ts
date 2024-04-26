@@ -1,6 +1,6 @@
 import { Collection, Cursor, Db, Long, MongoClient } from 'mongodb';
 
-import { TransactionModel, Logger, ITransactionStore } from '@extrimian-sidetree/common';
+import { TransactionModel, Logger, ITransactionStore } from '@quarkid-sidetree/common';
 /**
  * Implementation of ITransactionStore that stores the transaction data in a MongoDB database.
  */

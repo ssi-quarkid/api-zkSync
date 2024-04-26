@@ -1,5 +1,5 @@
 
-import { TransactionModel, ITransactionStore } from '@extrimian-sidetree/common';
+import { TransactionModel, ITransactionStore } from '@quarkid-sidetree/common';
 /**
  * Implementation of ITransactionStore that stores the transaction data in a MongoDB database.
  */
@@ -11,7 +11,7 @@ export default class TransactionStore implements ITransactionStore {
   public async initialize(
 
   ): Promise<void> {
-  
+
   }
 
   public async stop(): Promise<void> {

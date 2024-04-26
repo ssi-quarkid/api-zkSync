@@ -6,7 +6,7 @@ import {
   DeactivateSignedDataModel,
   ErrorCode,
   SidetreeError,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import InputValidator from './InputValidator';
 import JsonAsync from './util/JsonAsync';
@@ -29,7 +29,7 @@ export default class DeactivateOperation implements OperationModel {
     public readonly revealValue: string,
     public readonly signedDataJws: Jws,
     public readonly signedData: DeactivateSignedDataModel
-  ) {}
+  ) { }
 
   /**
    * Parses the given buffer as a `UpdateOperation`.

@@ -1,5 +1,5 @@
 {
-  "name": "@extrimian-sidetree/db",
+  "name": "@quarkid-sidetree/db",
   "publishConfig": {
     "access": "public"
   },
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@rollup/plugin-replace": "^3.0.0",
-    "@extrimian-sidetree/common": "1.0.0",
+    "@quarkid-sidetree/common": "1.0.0",
     "@types/mongodb": "^3.5.20",
     "mongodb": "^3.6.9"
   },

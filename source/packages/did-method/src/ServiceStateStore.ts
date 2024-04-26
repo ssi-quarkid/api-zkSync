@@ -1,5 +1,5 @@
 
-import { IServiceStateStore } from '@extrimian-sidetree/common';
+import { IServiceStateStore } from '@quarkid-sidetree/common';
 
 /**
  * Implementation of IServiceStateStore using MongoDB database.
@@ -13,6 +13,6 @@ export default class ServiceStateStore<T>
   }
 
   public async get(): Promise<T> {
-    return  {} as T
+    return {} as T
   }
 }

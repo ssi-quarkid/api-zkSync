@@ -21,8 +21,8 @@ class EthereumLedgerUtils {
   public getBlockchainTime = getBlockchainTime;
   public getPastEventsChunked = getPastEventsChunked;
 }
-import { TransactionModel, Encoder, Logger, LogColor } from '@extrimian-sidetree/common';
-import { AnchoredDataSerializer } from '@extrimian-sidetree/core';
+import { TransactionModel, Encoder, Logger, LogColor } from '@quarkid-sidetree/common';
+import { AnchoredDataSerializer } from '@quarkid-sidetree/core';
 import Web3 from 'web3';
 import { EthereumBlock, ElementEventData } from './types';
 import { Contract, EventData } from 'web3-eth-contract';

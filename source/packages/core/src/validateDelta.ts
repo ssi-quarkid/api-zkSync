@@ -1,4 +1,4 @@
-import { ErrorCode, Multihash, SidetreeError, protocolParameters } from '@extrimian-sidetree/common';
+import { ErrorCode, Multihash, SidetreeError, protocolParameters } from '@quarkid-sidetree/common';
 import DocumentValidator from './DocumentValidator';
 
 

@@ -1,5 +1,5 @@
 {
-  "name": "@extrimian-sidetree/core",
+  "name": "@quarkid-sidetree/core",
   "publishConfig": {
     "access": "public"
   },
@@ -36,9 +36,9 @@
   },
   "dependencies": {
     "@rollup/plugin-replace": "^3.0.0",
-    "@extrimian-sidetree/common": "1.0.0",
+    "@quarkid-sidetree/common": "1.0.0",
     "@sidetree/crypto": "^0.3.1-unstable.36",
-    "@extrimian-sidetree/db": "1.0.0",
+    "@quarkid-sidetree/db": "1.0.0",
     "@transmute/did-key-ed25519": "^0.3.0-unstable.4",
     "@trust/keyto": "^1.0.1",
     "bip39": "^3.0.2",

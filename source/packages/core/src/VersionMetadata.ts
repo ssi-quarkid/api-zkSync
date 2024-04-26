@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { AbstractVersionMetadata, protocolParameters } from '@extrimian-sidetree/common';
+import { AbstractVersionMetadata, protocolParameters } from '@quarkid-sidetree/common';
 
 /**
  * Implementation of the abstract VersionMetadata.

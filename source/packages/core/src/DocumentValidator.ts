@@ -5,7 +5,7 @@ import {
   // Encoder, // we don't require base64url
 
   SidetreeError,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import * as URI from 'uri-js';
 import ArrayMethods from './util/ArrayMethods';

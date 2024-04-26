@@ -1,4 +1,4 @@
-# @extrimian-sidetree/db
+# @quarkid-sidetree/db
 
 This package contains implementations of database storage means for storing Sidetree artifacts like Operations, Transactions, etc...
 
@@ -7,7 +7,7 @@ It currently contains only one implementation in MongoDB. Another implementation
 ## Usage
 
 ```
-npm install --save @extrimian-sidetree/db
+npm install --save @quarkid-sidetree/db
 ```
 
 ## Development

@@ -1,9 +1,9 @@
-# @extrimian-sidetree/did-method
+# @quarkid-sidetree/did-method
 
 ## Usage
 
 ```
-npm install --save @extrimian-sidetree/did-method
+npm install --save @quarkid-sidetree/did-method
 ```
 
 ## Development

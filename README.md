@@ -1,4 +1,4 @@
-## [Descripción](https://github.com/gcba/api-zkSync/edit/master/README.md#descripci%C3%B3n)
+## [Descripción](https://github.com/gcba/api-zkSync/tree/master?tab=readme-ov-file#descripci%C3%B3n-1)
 ## [Tecnologías](https://github.com/gcba/api-zkSync/tree/master?tab=readme-ov-file#tecnolog%C3%ADas)
 ## [Arquitectura](https://docs.quarkid.org/Arquitectura/) y [Documentación](https://docs.quarkid.org/Arquitectura/componentes/)
 ## Configuraciones: 

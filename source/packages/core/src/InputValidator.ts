@@ -4,7 +4,7 @@ import {
   Encoder,
   protocolParameters,
   SidetreeError,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 /**
  * Class containing generic input validation methods.

@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { DocumentModel, PublicKeyModel } from '@extrimian-sidetree/common';
+import { DocumentModel, PublicKeyModel } from '@quarkid-sidetree/common';
 
 /**
  * Class containing reusable document related operations.

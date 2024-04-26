@@ -1,11 +1,11 @@
 import Core from '../Core';
 import { MongoClient } from 'mongodb';
 
-import { ConsoleLogger } from '@extrimian-sidetree/common';
+import { ConsoleLogger } from '@quarkid-sidetree/common';
 
-import { MockCas } from '@extrimian-sidetree/cas';
+import { MockCas } from '@quarkid-sidetree/cas';
 
-import { MockLedger } from '@extrimian-sidetree/ledger';
+import { MockLedger } from '@quarkid-sidetree/ledger';
 
 import sidetreeTestNodeCoreConfig from '../configs/sidetree-test-node-config.json';
 import sidetreeTestNodeCoreVersions from '../configs/sidetree-test-node-core-versions.json';

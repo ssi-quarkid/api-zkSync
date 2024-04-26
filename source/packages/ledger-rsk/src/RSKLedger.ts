@@ -3,12 +3,12 @@ import {
   EthereumLedger,
   ElementEventData,
   EthereumFilter
-} from '@extrimian-sidetree/ethereum';
+} from '@quarkid-sidetree/ethereum';
 
 import {
   BlockchainTimeModel,
   TransactionModel
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 import Web3 from 'web3';
 
 

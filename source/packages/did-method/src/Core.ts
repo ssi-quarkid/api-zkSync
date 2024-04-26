@@ -6,7 +6,7 @@ import {
   MongoDbUnresolvableTransactionStore,
   MongoDbTransactionStore,
   MongoDbServiceStateStore,
-} from '@extrimian-sidetree/db';
+} from '@quarkid-sidetree/db';
 
 import {
   VersionManager,
@@ -21,7 +21,7 @@ import {
   Config,
   BatchScheduler,
   BlockchainClock,
-} from '@extrimian-sidetree/core';
+} from '@quarkid-sidetree/core';
 
 import {
   VersionModel,
@@ -33,7 +33,7 @@ import {
   IBlockchain,
   Logger,
   LogColor,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 /**
  * The core class that is instantiated when running a Sidetree node.

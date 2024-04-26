@@ -1,6 +1,6 @@
 {
     "private": true,
-    "name": "extrimian-sidetree",
+    "name": "quarkid-sidetree",
     "version": "1.0.0",
     "workspaces": [
       "packages/common",

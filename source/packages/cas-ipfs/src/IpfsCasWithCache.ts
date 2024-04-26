@@ -21,9 +21,9 @@ import {
   FetchResult,
   FetchResultCode,
   ServiceVersionModel,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 import IpfsCas from './IpfsCas';
-import { MongoDbCasCache } from '@extrimian-sidetree/db';
+import { MongoDbCasCache } from '@quarkid-sidetree/db';
 const { version } = require('../package.json');
 
 export default class IpfsCasWithCache extends IpfsCas {

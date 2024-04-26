@@ -4,7 +4,7 @@ import {
   UpdateSignedDataModel,
   ProvisionalProofFileModel,
   protocolParameters,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import Compressor from './util/Compressor';
 import InputValidator from './InputValidator';
@@ -27,7 +27,7 @@ export default class ProvisionalProofFile {
       signedDataJws: Jws;
       signedDataModel: UpdateSignedDataModel;
     }[]
-  ) {}
+  ) { }
 
   /**
    * Creates the buffer of a Provisional Proof File.

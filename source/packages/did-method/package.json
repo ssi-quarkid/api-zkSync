@@ -1,5 +1,5 @@
 {
-  "name": "@extrimian-sidetree/did-method",
+  "name": "@quarkid-sidetree/did-method",
   "publishConfig": {
     "access": "public"
   },
@@ -34,11 +34,11 @@
   },
   "dependencies": {
     "@rollup/plugin-replace": "^3.0.0",
-    "@extrimian-sidetree/cas": "1.0.0",
-    "@extrimian-sidetree/common": "1.0.0",
-    "@extrimian-sidetree/core": "1.0.0",
-    "@extrimian-sidetree/db": "1.0.0",
-    "@extrimian-sidetree/ledger": "1.0.0",
+    "@quarkid-sidetree/cas": "1.0.0",
+    "@quarkid-sidetree/common": "1.0.0",
+    "@quarkid-sidetree/core": "1.0.0",
+    "@quarkid-sidetree/db": "1.0.0",
+    "@quarkid-sidetree/ledger": "1.0.0",
     "mongodb": "^3.6.9",
     "semver": "^7.3.5",
     "time-span": "3.1.0"

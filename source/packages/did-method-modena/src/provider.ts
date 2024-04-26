@@ -1,12 +1,12 @@
 
-import { MockCas } from '@extrimian-sidetree/cas';
+import { MockCas } from '@quarkid-sidetree/cas';
 import { Modena } from "./Modena";
 import { ModenaNodeConfigs } from "./Types";
 export { ModenaNodeConfigs }
 import Ipfs from '@decentralized-identity/sidetree/dist/lib/ipfs/Ipfs';
 import { InputOptions } from "@truffle/hdwallet-provider/dist/constructor/Constructor";
 import { getEthereumLedger, getRSKLedger, getZKSyncLedger } from "./LedgerProvider";
-import { IEventEmitter } from '@extrimian-sidetree/common';
+import { IEventEmitter } from '@quarkid-sidetree/common';
 
 
 

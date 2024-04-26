@@ -4,7 +4,7 @@ import {
   Logger,
   protocolParameters,
   SidetreeError,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import timeSpan from 'time-span';
 import Compressor from './util/Compressor';

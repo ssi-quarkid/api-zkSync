@@ -1,6 +1,6 @@
 import MongoDbStore from './MongoDbStore';
 
-import { IServiceStateStore } from '@extrimian-sidetree/common';
+import { IServiceStateStore } from '@quarkid-sidetree/common';
 
 /**
  * Implementation of IServiceStateStore using MongoDB database.

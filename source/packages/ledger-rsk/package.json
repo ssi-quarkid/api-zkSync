@@ -1,5 +1,5 @@
 {
-  "name": "@extrimian-sidetree/rsk",
+  "name": "@quarkid-sidetree/rsk",
   "publishConfig": {
     "access": "public"
   },
@@ -39,9 +39,9 @@
   },
   "dependencies": {
     "@rollup/plugin-replace": "^3.0.0",
-    "@extrimian-sidetree/common": "1.0.0",
-    "@extrimian-sidetree/core": "1.0.0",
-    "@extrimian-sidetree/ethereum": "1.0.0",
+    "@quarkid-sidetree/common": "1.0.0",
+    "@quarkid-sidetree/core": "1.0.0",
+    "@quarkid-sidetree/ethereum": "1.0.0",
     "web3": "^1.7.1",
     "web3-eth": "^1.7.1",
     "web3-eth-contract": "^1.7.1"

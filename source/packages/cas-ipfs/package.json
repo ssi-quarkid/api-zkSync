@@ -1,5 +1,5 @@
 {
-  "name": "@extrimian-sidetree/cas-ipfs",
+  "name": "@quarkid-sidetree/cas-ipfs",
   "publishConfig": {
     "access": "public"
   },
@@ -30,9 +30,9 @@
   },
   "dependencies": {
     "@rollup/plugin-replace": "^3.0.0",
-    "@extrimian-sidetree/cas": "1.0.0",
-    "@extrimian-sidetree/common": "1.0.0",
-    "@extrimian-sidetree/db": "1.0.0",
+    "@quarkid-sidetree/cas": "1.0.0",
+    "@quarkid-sidetree/common": "1.0.0",
+    "@quarkid-sidetree/db": "1.0.0",
     "ipfs-http-client": "^49.0.2",
     "it-concat": "^1.0.0",
     "jest-environment-node": "^27.2.5"

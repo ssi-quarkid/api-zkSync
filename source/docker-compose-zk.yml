@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  modenav4:
+    image: api-zksynk-s2i:latest
+    ports:
+      - 8000:3000 #MODENA API port
+    environment:
+      - DID_METHOD_NAME=quarkid:zksync
+      - CONTENT_ADDRESSABLE_STORE_SERVICE_URI=http://10.9.10.43:5001/
+      - DATABASE_NAME=modena-v2
+      - RPC_URL=https://sepolia.era.zksync.dev/
+      - MONGO_DB_CONNECTION_STRING=mongodb://10.9.11.141:27017?authSource=admin
+      - MAX_CONCURRENT_DOWNLOADS=20
+      - OBSERVING_INTERVAL_IN_SECONDS=5
+      - BATCHING_INTERVAL_IN_SECONDS=10
+      - STARTING_BLOCKCHAIN_TIME=2652485
+      - STARTING_BLOCKCHAIN_TIME=505069
+      - BLOCKCHAIN_VERSION=latest
+      - MODENA_ANCHOR_CONTRACT=0xd0a16CBeb6da098B872785bFAc282f84F8Ca5993
+      - WALLET_PRIVATE_KEY=PEDIMELA
+      - ACCOUNT_ADDRESS=0x2535412fA22D9ad83384D7Ab7b636DDA37eFA872
+      - LEDGER_TYPE=zksync

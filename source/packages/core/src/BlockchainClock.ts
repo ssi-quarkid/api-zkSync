@@ -3,7 +3,7 @@ import {
   IServiceStateStore,
   Logger,
   ServiceStateModel,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import EventCode from './EventCode';
 import EventEmitter from './EventEmitter';
@@ -32,7 +32,7 @@ export default class BlockchainClock {
     private blockchain: IBlockchain,
     private serviceStateStore: IServiceStateStore<ServiceStateModel>,
     private enableRealBlockchainTimePull: boolean
-  ) {}
+  ) { }
 
   /**
    * Get the time

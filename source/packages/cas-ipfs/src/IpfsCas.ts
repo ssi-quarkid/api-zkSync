@@ -22,7 +22,7 @@ import {
   ICasService,
   FetchResult,
   ServiceVersionModel,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 import ipfsClient from 'ipfs-http-client';
 import concat from 'it-concat';
 

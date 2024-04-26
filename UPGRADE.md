@@ -1,13 +1,12 @@
+# Upgrade de v1.0.2-RC2 => v1.0.2-RC3
 
-# Upgrade de v1.0.2-RC1 => v1.0.2-RC2
-
-Se actualiza nueva version de node , fix bugs , versiones de paquetes -
+Se actualiza la red de pruebas (testnet) contra la cual interactua.
 
 ## DB Upgrade
 
 ## Realizar build y deploy desde tags
 
-- api-zksynk/Tag: 1.0.2-RC2
+- api-zksynk/Tag: 1.0.2-RC3
 
 ### Despliegue (OC)
 

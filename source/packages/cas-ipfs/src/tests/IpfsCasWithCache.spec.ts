@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { testSuite } from '@extrimian-sidetree/cas';
+import { testSuite } from '@quarkid-sidetree/cas';
 import IpfsCasWithCache from '../IpfsCasWithCache';
 import config from './config.json';
 

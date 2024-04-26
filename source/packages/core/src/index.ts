@@ -22,7 +22,7 @@ import {
   ErrorCode,
   ServiceStateModel,
   SidetreeError,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import BatchScheduler from './BatchScheduler';
 import ChunkFile from './ChunkFile';

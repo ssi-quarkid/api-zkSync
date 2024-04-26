@@ -1,4 +1,4 @@
-import { IEventEmitter, Logger, LogColor } from "@extrimian-sidetree/common";
+import { IEventEmitter, Logger, LogColor } from "@quarkid-sidetree/common";
 import EventStatus from "./EventStatus";
 import { EventCode } from "./EventCode";
 export default class CachedEventEmitter implements IEventEmitter {
@@ -12,7 +12,7 @@ export default class CachedEventEmitter implements IEventEmitter {
             x => this.events.set(x, new EventStatus(x, 0, null))
         )
     }
-    
+
     public async emit(
         eventCode: string,
         eventData?: { [property: string]: any }

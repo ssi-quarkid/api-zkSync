@@ -5,7 +5,7 @@ This package contains an implementation of the Sidetree ledger interface on the 
 ## Usage
 
 ```
-npm install --save @extrimian-sidetree/ethereum
+npm install --save @quarkid-sidetree/ethereum
 ```
 
 ## Development

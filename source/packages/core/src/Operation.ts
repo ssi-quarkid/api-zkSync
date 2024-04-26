@@ -3,7 +3,7 @@ import {
   OperationType,
   OperationModel,
   SidetreeError,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import CreateOperation from './CreateOperation';
 import DeactivateOperation from './DeactivateOperation';

@@ -1,4 +1,4 @@
-import { Encoder, Multihash, SuffixDataModel } from '@extrimian-sidetree/common';
+import { Encoder, Multihash, SuffixDataModel } from '@quarkid-sidetree/common';
 
 import JsonCanonicalizer from './util/JsonCanonicalizer';
 

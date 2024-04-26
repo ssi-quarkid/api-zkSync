@@ -4,7 +4,7 @@ import {
   ProvisionalIndexFileModel,
   protocolParameters,
   SidetreeError,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import ArrayMethods from './util/ArrayMethods';
 import Compressor from './util/Compressor';

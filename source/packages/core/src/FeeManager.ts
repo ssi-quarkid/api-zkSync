@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { ErrorCode, protocolParameters, SidetreeError } from '@extrimian-sidetree/common';
+import { ErrorCode, protocolParameters, SidetreeError } from '@quarkid-sidetree/common';
 
 /**
  * Encapsulates the functionality to calculate and verify the blockchain transaction fees.

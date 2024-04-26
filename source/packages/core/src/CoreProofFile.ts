@@ -5,7 +5,7 @@ import {
   RecoverSignedDataModel,
   protocolParameters,
   SidetreeError,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import Compressor from './util/Compressor';
 import DeactivateOperation from './DeactivateOperation';
@@ -33,7 +33,7 @@ export default class CoreProofFile {
       signedDataJws: Jws;
       signedDataModel: DeactivateSignedDataModel;
     }[]
-  ) {}
+  ) { }
 
   /**
    * Creates the buffer of a Core Proof File.

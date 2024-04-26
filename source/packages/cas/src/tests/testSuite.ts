@@ -21,8 +21,8 @@
 //   Encoder,
 //   Multihash,
 //   JsonCanonicalizer,
-// } from '@extrimian-sidetree/common';
-// import { didMethod } from '@extrimian-sidetree/test-vectors';
+// } from '@quarkid-sidetree/common';
+// import { didMethod } from '@quarkid-sidetree/test-vectors';
 // import crypto from 'crypto';
 // import {
 //   testBuffer,

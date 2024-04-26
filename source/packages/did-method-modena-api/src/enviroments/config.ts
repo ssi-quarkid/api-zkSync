@@ -1,6 +1,6 @@
 import config from "../../config/modena-node-config.json";
 import wallet from "../../config/wallet-provider-config.json";
-import { InputOptions } from '@extrimian-sidetree/did-method-modena';
+import { InputOptions } from '@quarkid-sidetree/did-method-modena';
 
 
 

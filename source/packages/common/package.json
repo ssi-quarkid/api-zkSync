@@ -1,5 +1,5 @@
 {
-  "name": "@extrimian-sidetree/common",
+  "name": "@quarkid-sidetree/common",
   "publishConfig": {
     "access": "public"
   },

@@ -6,7 +6,7 @@
 // //   MongoDbUnresolvableTransactionStore,
 // //   MongoDbTransactionStore,
 // //   MongoDbServiceStateStore,
-// // } from '@extrimian-sidetree/db';
+// // } from '@quarkid-sidetree/db';
 
 // import {
 //   VersionManager,
@@ -21,7 +21,7 @@
 //   Config,
 //   BatchScheduler,
 //   BlockchainClock,
-// } from '@extrimian-sidetree/core';
+// } from '@quarkid-sidetree/core';
 
 // import {
 //   VersionModel,
@@ -37,7 +37,7 @@
 //   ITransactionStore,
 //   IUnresolvableTransactionStore,
 //   IOperationStore,
-// } from '@extrimian-sidetree/common';
+// } from '@quarkid-sidetree/common';
 // import ServiceStateStore from './ServiceStateStore';
 // import OperationStore from './OperationStore';
 // import UnresolvableTransactionStore from './UnresolvableTransactionStore';

@@ -1,5 +1,5 @@
 {
-  "name": "@extrimian-sidetree/zksync",
+  "name": "@quarkid-sidetree/zksync",
   "author": "vriera",
 
   "version": "1.0.0",
@@ -33,10 +33,10 @@
   },
   "dependencies": {
     "@rollup/plugin-replace": "^3.0.0",
-    "@extrimian-sidetree/ethereum": "1.0.0",
-    "@extrimian-sidetree/common": "1.0.0",
-    "@extrimian-sidetree/core": "1.0.0",
-    "@extrimian-sidetree/rsk": "1.0.0",
+    "@quarkid-sidetree/ethereum": "1.0.0",
+    "@quarkid-sidetree/common": "1.0.0",
+    "@quarkid-sidetree/core": "1.0.0",
+    "@quarkid-sidetree/rsk": "1.0.0",
     "ethers": "^5.7.2",
     "zksync-web3": "^0.13.4"
   },

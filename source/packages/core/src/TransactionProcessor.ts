@@ -14,7 +14,7 @@ import {
   AnchoredOperationModel,
   AnchoredData,
   protocolParameters,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import AnchoredDataSerializer from './AnchoredDataSerializer';
 import ArrayMethods from './util/ArrayMethods';

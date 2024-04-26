@@ -18,7 +18,7 @@
  * limitations under the License.
  */
 
-import { FetchResult, FetchResultCode } from '@extrimian-sidetree/common';
+import { FetchResult, FetchResultCode } from '@quarkid-sidetree/common';
 import { MongoClient, Collection, Db } from 'mongodb';
 
 export default class MongoDbCasCache {
@@ -51,7 +51,7 @@ export default class MongoDbCasCache {
     return collection;
   }
 
-  public async initialize(serverUrl: string, databaseName: string): Promise<void>{
+  public async initialize(serverUrl: string, databaseName: string): Promise<void> {
     const client = await MongoClient.connect(serverUrl);
     this.client = client;
     this.db = client.db(databaseName);

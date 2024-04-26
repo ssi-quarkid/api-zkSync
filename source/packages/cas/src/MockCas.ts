@@ -3,7 +3,7 @@ import {
   FetchResultCode,
   ICasService,
   ServiceVersionModel,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 import Unixfs from 'ipfs-unixfs';
 import { DAGNode } from 'ipld-dag-pb';
 const { version } = require('../package.json');

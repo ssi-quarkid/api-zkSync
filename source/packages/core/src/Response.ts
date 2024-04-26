@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-import { ResponseStatus } from '@extrimian-sidetree/common';
+import { ResponseStatus } from '@quarkid-sidetree/common';
 
 /**
  * Contains operations related to `IResponse`.

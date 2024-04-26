@@ -1,4 +1,4 @@
-import { ErrorCode, SidetreeError } from '@extrimian-sidetree/common';
+import { ErrorCode, SidetreeError } from '@quarkid-sidetree/common';
 
 const util = require('util');
 const zlib = require('zlib');

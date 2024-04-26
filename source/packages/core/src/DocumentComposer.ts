@@ -5,7 +5,7 @@ import {
   DocumentModel,
   DidState,
   SidetreeError,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import Did from './Did';
 import JsObject from './util/JsObject';

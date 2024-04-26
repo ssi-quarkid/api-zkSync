@@ -3,7 +3,7 @@ import {
   TransactionModel,
   UnresolvableTransactionModel,
   IUnresolvableTransactionStore,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 /**
  * Implementation of `IUnresolvableTransactionStore` that stores the transaction data in a MongoDB database.
@@ -16,7 +16,7 @@ export default class UnresolvableTransactionStore
    * Initialize the MongoDB unresolvable transaction store.
    */
   public async initialize(): Promise<void> {
-  
+
   }
 
   public async stop(): Promise<void> {
@@ -38,13 +38,13 @@ export default class UnresolvableTransactionStore
   public async removeUnresolvableTransaction(
     _transaction: TransactionModel
   ): Promise<void> {
-   
+
   }
 
   public async getUnresolvableTransactionsDueForRetry(
     _maximumReturnCount?: number
   ): Promise<TransactionModel[]> {
-   return []
+    return []
   }
 
   public async removeUnresolvableTransactionsLaterThan(

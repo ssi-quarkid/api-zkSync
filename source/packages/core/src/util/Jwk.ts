@@ -26,7 +26,7 @@ import {
   PrivateKeyJwkEd25519,
   PrivateKeyJwk,
   PublicKeyJwk,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 import { JWK } from 'jose';
 import * as bip39 from 'bip39';
 import { Ed25519KeyPair } from '@transmute/did-key-ed25519';

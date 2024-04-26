@@ -19,10 +19,10 @@ const { version } = require('../package.json');
 
 import * as ethers from 'ethers';
 import * as zksync from 'zksync-web3';
-import { BlockchainTimeModel, Encoder, IBlockchain, ServiceVersionModel, TransactionModel, ValueTimeLockModel } from '@extrimian-sidetree/common';
+import { BlockchainTimeModel, Encoder, IBlockchain, ServiceVersionModel, TransactionModel, ValueTimeLockModel } from '@quarkid-sidetree/common';
 import utils from './utils';
 import { EthereumBlock } from './types';
-import { AnchoredDataSerializer } from '@extrimian-sidetree/core';
+import { AnchoredDataSerializer } from '@quarkid-sidetree/core';
 import { RPCEventFetcher } from './Events';
 
 const anchorContractArtifact = require('../build/contracts/SimpleSidetreeAnchor.json');

@@ -7,7 +7,7 @@ import {
   DeltaModel,
   ErrorCode,
   SidetreeError,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 
 import InputValidator from './InputValidator';
 import JsonAsync from './util/JsonAsync';

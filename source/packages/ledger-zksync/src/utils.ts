@@ -16,8 +16,8 @@
 
 
 import axios from 'axios';
-import { TransactionModel, Encoder, Logger, LogColor } from '@extrimian-sidetree/common';
-import { AnchoredDataSerializer } from '@extrimian-sidetree/core';
+import { TransactionModel, Encoder, Logger, LogColor } from '@quarkid-sidetree/common';
+import { AnchoredDataSerializer } from '@quarkid-sidetree/core';
 import { EthereumBlock, SidetreeEventData } from './types';
 import { RPCEventFetcher } from './Events';
 
@@ -51,7 +51,7 @@ async function getBlock(
   blockHashOrBlockNumber: string | number,
   rpcUrl: string
 ): Promise<EthereumBlock> {
-  return await getBlockInfo(rpcUrl,blockHashOrBlockNumber);
+  return await getBlockInfo(rpcUrl, blockHashOrBlockNumber);
 };
 
 
@@ -60,7 +60,7 @@ const getBlockchainTime = async (
   blockHashOrBlockNumber: string | number,
   rpcUrl: string
 ): Promise<string | number | null> => {
-  const block: EthereumBlock = await getBlock(blockHashOrBlockNumber , rpcUrl);
+  const block: EthereumBlock = await getBlock(blockHashOrBlockNumber, rpcUrl);
   if (block) {
     return block.timestamp;
   }
@@ -73,7 +73,7 @@ const extendSidetreeTransactionWithTimestamp = async (
 ): Promise<TransactionModel[]> => {
   return Promise.all(
     txns.map(async (txn) => {
-      const timestamp = await getBlockchainTime(txn.transactionTime , rpcUrl);
+      const timestamp = await getBlockchainTime(txn.transactionTime, rpcUrl);
       if (typeof timestamp === 'number') {
         return {
           ...txn,
@@ -166,14 +166,14 @@ async function getPastEventsChunked(
 
 
 
-async function getBlockInfo(endpoint: string, blockIdentifier: string | number): Promise< {
+async function getBlockInfo(endpoint: string, blockIdentifier: string | number): Promise<{
   number: number,
   hash: string,
   timestamp: number | string,
 }> {
   try {
     // Create a JSON-RPC request object
-    if( typeof blockIdentifier == "number"){
+    if (typeof blockIdentifier == "number") {
       blockIdentifier = blockIdentifier.toString(16)
     }
 
@@ -203,7 +203,7 @@ async function getBlockInfo(endpoint: string, blockIdentifier: string | number):
     const blockNumber = parseInt(result.number, 16);
     const blockHash = result.hash;
     const blockTimestamp = parseInt(result.timestamp, 16);
-    
+
     return {
       number: blockNumber,
       hash: blockHash,

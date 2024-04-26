@@ -1,4 +1,4 @@
-import { EthereumLedger } from "@extrimian-sidetree/ethereum";
+import { EthereumLedger } from "@quarkid-sidetree/ethereum";
 import Web3 from "web3";
 
 export class GenesisBatch {

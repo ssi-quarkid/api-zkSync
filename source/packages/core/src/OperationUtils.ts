@@ -23,7 +23,7 @@ import {
   ErrorCode,
   Multihash,
   SidetreeError,
-} from '@extrimian-sidetree/common';
+} from '@quarkid-sidetree/common';
 import DocumentComposer from './DocumentComposer';
 import JsonAsync from './util/JsonAsync';
 

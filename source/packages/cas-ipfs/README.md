@@ -1,4 +1,4 @@
-# @extrimian-sidetree/cas-ipfs
+# @quarkid-sidetree/cas-ipfs
 
 This package contains several implementations of [Content Addressable Storage](https://en.wikipedia.org/wiki/Content-addressable_storage) used in Sidetree.
 
@@ -9,7 +9,7 @@ It contains:
 ## Usage
 
 ```
-npm install --save @extrimian-sidetree/cas-ipfs
+npm install --save @quarkid-sidetree/cas-ipfs
 ```
 
 ## Development

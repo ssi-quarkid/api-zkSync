@@ -1,10 +1,10 @@
-import { MockCas } from '@extrimian-sidetree/cas';
+import { MockCas } from '@quarkid-sidetree/cas';
 
-import { MockLedger } from '@extrimian-sidetree/ledger';
+import { MockLedger } from '@quarkid-sidetree/ledger';
 
 import sidetreeTestNodeCoreVersions from './configs/sidetree-test-node-core-versions.json';
 import Core from './Core';
-import { ConsoleLogger } from '@extrimian-sidetree/common';
+import { ConsoleLogger } from '@quarkid-sidetree/common';
 
 export const getTestNodeIntance = async (sideTreeNodeCoreConfig: {
   batchingIntervalInSeconds: number;
