@@ -1,48 +1,46 @@
-## [Descripción](https://github.com/gcba/api-zkSync/tree/master?tab=readme-ov-file#descripci%C3%B3n-1)
-## [Tecnologías](https://github.com/gcba/api-zkSync/tree/master?tab=readme-ov-file#tecnolog%C3%ADas)
-## [Arquitectura](https://docs.quarkid.org/Arquitectura/) y [Documentación](https://docs.quarkid.org/Arquitectura/componentes/)
-## Configuraciones: 
-### 1. [Entorno local](https://github.com/gcba/api-zkSync/tree/master?tab=readme-ov-file#configuraraci%C3%B3n-de-entorno-local)
-### 2. [Modificación de Red Blockchain](https://github.com/gcba/api-zkSync/tree/master?tab=readme-ov-file#modificaci%C3%B3n-de-red-blockchain)
-### 3. [Variables de entorno](https://github.com/gcba/api-zkSync/tree/master?tab=readme-ov-file#modificaci%C3%B3n-de-red-blockchain)
-### 4. [Instalación](https://github.com/gcba/api-zkSync/tree/master?tab=readme-ov-file#modificaci%C3%B3n-de-red-blockchain)
-### 5. [Pasos para instalar el componente en un servidor](https://github.com/gcba/api-zkSync/tree/master?tab=readme-ov-file#pasos-para-instalar-el-componente-en-un-servidor)
-### 6. [Pasos para iniciar un nodo de Identidad Quarkid](https://github.com/gcba/Nodo-QuickStar/tree/master)
-## [Licencia](https://github.com/gcba/api-zkSync/tree/master?tab=readme-ov-file#licencia)
-
+## [Description](#description)
+## [Technologies](#technologies)
+## [Architecture](https://docs.quarkid.org/en/Arquitectura/) and [Documentation](https://docs.quarkid.org/en/Arquitectura/componentes/)
+## Configurations: 
+### 1. [Local Environment](#local-environment-configuration)
+### 2. [Blockchain Network Modification](#blockchain-network-modification)
+### 3. [Environment Variables](#environment-variables)
+### 4. [Installation](#installation)
+### 5. [Steps to Install the Component on a Server](#steps-to-install-the-component-on-a-server)
+### 6. [Steps to Start a Quarkid Identity Node](https://github.com/ssi-quarkid/Nodo-QuickStart)
 
 -------------------------------------------------------------------------------------------------------
 
-## Descripción
+## Description
 
-ApiZksync es un componente cuya funcionalidad principal es la creación y gestión de identificadores descentralizados (DID). Una de las características clave de esta implementación de SideTree es la capacidad de optimizar los costos de transacción al minimizar la cantidad de interacciones directas con la cadena de bloques al igual que permitir al usuario modificaciones sobre sus DID.
+ApiZksync is a component whose main functionality is the creation and management of decentralized identifiers (DID). One of the key features of this SideTree implementation is the ability to optimize transaction costs by minimizing the number of direct interactions with the blockchain while allowing users to modify their DIDs.
 
-## Tecnologías
+## Technologies
 
-La aplicación cuenta con las siguientes tecnologías:
+The application uses the following technologies:
 
 * Node.js - 18.17.1
 * Nest.js - 8.0.0
 * Typescript - 4.*
 * Yarn - 1.22.19
 
-## Arquitectura
-[Diagrama](https://docs.quarkid.org/Arquitectura/)
+## Architecture
+[Diagram](https://docs.quarkid.org/en/Arquitectura/)
 
-## Documentación
-[Link](https://docs.quarkid.org/Arquitectura/componentes/)
+## Documentation
+[Link](https://docs.quarkid.org/en/Arquitectura/componentes/)
 
-## Configuraración de entorno local
+## Local Environment Configuration
 
-Se requiere tener instalados previamente:
+The following needs to be installed beforehand:
 ```bash
 npm install -g @nestjs/cli
 ```
 
-Clonar el repositorio
+Clone the repository
 
-- Abrir el proyecto con el editor seleccionado
-- Abrir una terminal y ejecutar:
+- Open the project with the selected editor
+- Open a terminal and execute:
 
 ```bash
 cd source
@@ -51,35 +49,35 @@ cd packages/did-method-modena-api
 nest start
 ```
 
-## Modificación de red Blockchain
+## Blockchain Network Modification
 
-En caso de querer utilizar este componente anclado en alguna otra red blockchain, se deberá tener en cuenta las siguientes acalaraciones: 
+If you want to use this component anchored to another blockchain network, the following clarifications should be taken into account: 
 
-Ledgers soportados:
+Supported Ledgers:
 
-Esta implementación admite el anclaje de una red Sidetree para una serie de BlockChains de Nivel 2.
-Soporta cualquier blockchain similar a Ethereum, se realizaron pruebas con RSK y Polygon. Se requiere que la red sea compatible con los módulos Web3 y HDWalletProvider node.js.
-Para Starknet, se realizaron pruebas usando el módulo StarkNet.js y el paquete ledger-starknet y se pudo crear una red Sidetree.
+This implementation supports anchoring a Sidetree network for a series of Level 2 BlockChains.
+It supports any Ethereum-like blockchain, tests have been conducted with RSK and Polygon. The network is required to be compatible with Web3 and HDWalletProvider node.js modules.
+For Starknet, tests were conducted using the StarkNet.js module and the ledger-starknet package, and a Sidetree network could be created.
 
-- RPC_URL: URL para que el nodo se conecte a la blockchain.
-- MODENA_ANCHOR_CONTRACT: Dirección del contracto de anclaje de Sidetree en la Ledger.
-- STARTING_BLOCKCHAIN_TIME: Número de bloque por el cual el core va a empezar a sincronizarse con la red.
-- BLOCKCHAIN_VERSION: Utilice 'latest'
-- WALLET_PRIVATE_KEY: Clave privada de la cuenta con la que se va a pagar las transacciones de escritura.
-- LEDGER_TYPE: 'eth' para tipo Ethereum, 'starknet' para StarkNet, 'rsk' para polling en chunks, 'zksync' para utilizar wallet ethers
-- ACCOUNT_ADDRESS (solo requerido en starknet): Dirección para el contrato de la cuenta.
-- SECONDARY_WALLET_PRIVATE_KEY: (opcional en zksync) Clave privada de la cuenta con la que va a realizar la lectura en 'zksync'
-- SECONDARY_RPC_URL:(opcional en zksync) RPC para la wallet que lee de la blockchain en 'zksync'
+- RPC_URL: URL for the node to connect to the blockchain.
+- MODENA_ANCHOR_CONTRACT: Address of the Sidetree anchor contract in the Ledger.
+- STARTING_BLOCKCHAIN_TIME: Block number from which the core will start synchronizing with the network.
+- BLOCKCHAIN_VERSION: Use 'latest'
+- WALLET_PRIVATE_KEY: Private key of the account that will pay for write transactions.
+- LEDGER_TYPE: 'eth' for Ethereum type, 'starknet' for StarkNet, 'rsk' for polling in chunks, 'zksync' to use ethers wallet
+- ACCOUNT_ADDRESS (only required in starknet): Address for the account contract.
+- SECONDARY_WALLET_PRIVATE_KEY: (optional in zksync) Private key of the account that will perform reading in 'zksync'
+- SECONDARY_RPC_URL: (optional in zksync) RPC for the wallet that reads from the blockchain in 'zksync'
 
-## Variables de Entorno
+## Environment Variables
 
-### Generales
+### General
 
-### Variables de entorno de la aplicación
-Se deben configurar las variables de entorno en [Source](/source/packages/did-method-modena-api/config/modena-node-config.json)
+### Application environment variables
+Environment variables must be configured in [Source](/source/packages/did-method-modena-api/config/modena-node-config.json)
 
 - DID_METHOD_NAME: quarkid 
-- CONTENT_ADDRESSABLE_STORE_SERVICE_URI: IP:PUERTO
+- CONTENT_ADDRESSABLE_STORE_SERVICE_URI: IP:PORT
 - DATABASE_NAME: -zksync-mainnet-v1 
 - RPC_URL: https://mainnet.era.zksync.io
 - MONGO_DB_CONNECTION_STRING: mongodb://10.1.0.2:27017
@@ -89,45 +87,44 @@ Se deben configurar las variables de entorno en [Source](/source/packages/did-me
 - STARTING_BLOCKCHAIN_TIME: 2652485
 - BLOCKCHAIN_VERSION: latest
 - MODENA_ANCHOR_CONTRACT 0xe0055B74422Bec15cB1625792C4aA0beDcC61AA7
-- WALLET_PRIVATE_KEY: Clave Privada de un address con saldo en la red Zksync
+- WALLET_PRIVATE_KEY: Private Key of an address with balance in the Zksync network
 - ACCOUNT_ADDRESS: 0x9CAA73a4865fa9dbb125b6C7B2f03b6621234
-- LEDGER_TYPE: zksync | rsk | eth Red blockchain a utilizar
+- LEDGER_TYPE: zksync | rsk | eth Blockchain network to use
 
+### Database and CAS
 
-### Base de datos y CAS
+- CONTENT_ADDRESSABLE_STORE_SERVICE_URI: URI for the CAS, in this case an IPFS.
+- DATABASE_NAME: The name of the database to be used in MongoDB
+- MONGO_DB_CONNECTION_STRING: String to connect to the MongoDB database, it's the same used in compass.
+- It's important to note that port 4001 must be open to synchronize with IPFS. If this port is not opened, the node will not be able to resolve identities that were created on another node.
 
-- CONTENT_ADDRESSABLE_STORE_SERVICE_URI: URI para el CAS, en este caso un IPFS.
-- DATABASE_NAME: El nombre de la base de datos que se usar en MongoDB
-- MONGO_DB_CONNECTION_STRING: String para conectarse a la base de datos de MongoDB, es el mismo que se utiliza en compass.
-- Es importante tener en cuenta que el puerto 4001 debe estar abierto para sincronizar con IPFS. Si no se abre este puerto, el nodo no será capaz de resolver identidades que se crearon en otro nodo.
+### Ledger Configuration
 
-### Configuración de Ledger
+- RPC_URL: URL for the node to connect to the blockchain.
+- MODENA_ANCHOR_CONTRACT: Address of the Sidetree anchor contract in the Ledger.
+- STARTING_BLOCKCHAIN_TIME: Block number from which the core will start synchronizing with the network.
+- BLOCKCHAIN_VERSION: Use 'latest'
+- WALLET_PRIVATE_KEY: Private key of the account that will pay for write transactions.
+- LEDGER_TYPE: 'eth' for Ethereum type, 'starknet' for StarkNet, 'rsk' for polling in chunks, 'zksync' to use ethers wallet (better explained in other readmes)
+- ACCOUNT_ADDRESS (only required in starknet): Address for the account contract.
+- SECONDARY_WALLET_PRIVATE_KEY: (optional in zksync) Private key of the account that will perform reading in 'zksync'
+- SECONDARY_RPC_URL: (optional in zksync) RPC for the wallet that reads from the blockchain in 'zksync'
 
-- RPC_URL: URL para que el nodo se conecte a la blockchain.
-- MODENA_ANCHOR_CONTRACT: Dirección del contracto de anclaje de Sidetree en la Ledger.
-- STARTING_BLOCKCHAIN_TIME: Número de bloque por el cual el core va a empezar a sincronizarse con la red.
-- BLOCKCHAIN_VERSION: Utilice 'latest'
-- WALLET_PRIVATE_KEY: Clave privada de la cuenta con la que se va a pagar las transacciones de escritura.
-- LEDGER_TYPE: 'eth' para tipo Ethereum, 'starknet' para StarkNet, 'rsk' para polling en chunks, 'zksync' para utilizar wallet ethers (mejor explicado en los otros readme)
-- ACCOUNT_ADDRESS (solo requerido en starknet): Dirección para el contrato de la cuenta.
-- SECONDARY_WALLET_PRIVATE_KEY: (opcional en zksync) Clave privada de la cuenta con la que va a realizar la lectura en 'zksync'
-- SECONDARY_RPC_URL:(opcional en zksync) RPC para la wallet que lee de la blockchain en 'zksync'
+### Network Requirements
 
-### Requerimientos de red
+The application must have internet connectivity to synchronize with the blockchain.
 
-La aplicación debe tener conectividad a internet para poder sincronizar con blockchain.
-
-### Ruta de acceso
+### Access Route
 
 N/A
 
 ### Healthcheck
 
-Para comprobar la salud del servicio basta con navegar la url base con una / al final, retornara un Status 200, con la info correspondiente.
+To check the health of the service, simply navigate to the base url with a / at the end, it will return a Status 200, with the corresponding info.
 
-## Instalación
+## Installation
 
-1. Descargar e instalar docker, docker- compose ,s2i
+1. Download and install docker, docker-compose, s2i
 ````
 sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
 sudo yum repolist
@@ -145,16 +142,15 @@ sudo tar -xvzf ./source-to-image-v1.3.6-cd7d7ce9-linux-amd64.tar.gz
 sudo cp ./s2i /usr/local/bin
 ````
 
-2. Dar permiso de ejecucion docker-compose
+2. Give execution permission to docker-compose
 ````
 sudo chmod +x /usr/local/bin/docker-compose
 ````
 
-3. Bildear imagen
-
+3. Build image
 
 ```
-s2i build ../secictd/identidad-soberana/api-zksynk.git -r {TAG A GENERAR} --context-dir source registry.access.redhat.com/ubi8/nodejs-18:latest api-zksynk-s2i |& tee /tmp/api-zksynk-s2i-build.log
+s2i build ../secictd/identidad-soberana/api-zksynk.git -r {TAG TO GENERATE} --context-dir source registry.access.redhat.com/ubi8/nodejs-18:latest api-zksynk-s2i |& tee /tmp/api-zksynk-s2i-build.log
 ```
 
 4. Podman sockets
@@ -167,13 +163,13 @@ sudo systemctl status podman.socket
 ````
 
 5. Docker-compose up
-ya que la app no tiene permiso para crear la bbdd en mongo,
-crear base de datos en mongo de produccion ( y agregar ruta al mongo en el docker compose), "modena-zksync-testnet-v1"
+Since the app doesn't have permission to create the database in mongo,
+create database in production mongo (and add path to mongo in the docker compose), "modena-zksync-testnet-v1"
 
 ````
 /usr/local/bin/docker-compose -f docker-compose-zk-prod.yml up
 ````
-6. Servicio de rebooteo
+6. Reboot service
 ````
 podman generate systemd --files --name source_modenav4_1
 ````
@@ -187,54 +183,54 @@ sudo systemctl daemon-reload
 sudo loginctl enable-linger
 ..
 ````
-## Pasos para instalar el componente en un servidor
+## Steps to Install the Component on a Server
 
-Prerequisitos:
-En un servidor Linux vacío, usted debe instalar Docker.
+Prerequisites:
+On an empty Linux server, you must install Docker.
 
-Para instalar Docker en Ubuntu, sigue estos pasos:
+To install Docker on Ubuntu, follow these steps:
 
-1. Actualiza el índice de paquetes:
+1. Update the package index:
 bash
 sudo apt update
 
-2. Instala los paquetes necesarios para permitir que apt utilice un repositorio sobre HTTPS:
+2. Install the necessary packages to allow apt to use a repository over HTTPS:
 ````
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
 ````
-3. Descarga la clave GPG oficial de Docker:
+3. Download Docker's official GPG key:
 ````
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ````
-4. Añade el repositorio de Docker a las fuentes de apt:
+4. Add the Docker repository to apt sources:
 ````
 Copy code
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ````
 
-5. Actualiza el índice de paquetes nuevamente para que apt pueda utilizar el nuevo repositorio agregado:
+5. Update the package index again so apt can use the newly added repository:
 ````
 sudo apt update
 ````
-6. Asegúrate de que estás a punto de instalar desde el repositorio de Docker en lugar del repositorio predeterminado de Ubuntu:
+6. Make sure you're about to install from the Docker repository instead of the default Ubuntu repository:
 ````
 apt-cache policy docker-ce
 ````
 
-8. Finalmente, instala Docker:
+8. Finally, install Docker:
 ````
 sudo apt install docker-ce
 ````
 
-Docker ahora debería estar instalado, el servicio se iniciará automáticamente después de la instalación. Para verificar que Docker se haya instalado correctamente, puedes ejecutar el siguiente comando:
+Docker should now be installed, the service will start automatically after installation. To verify that Docker has been installed correctly, you can run the following command:
 ````
 sudo systemctl status docker
 ````
 
-### Ahora tienes Docker instalado en tu máquina Ubuntu. Puedes comenzar a utilizar Docker para crear, ejecutar y administrar contenedores.
+### Now you have Docker installed on your Ubuntu machine. You can start using Docker to create, run, and manage containers.
 
-## Para la instalación de los componentes de QuarkID, los pasos son: 
- 1)  Descargar las Imágenes Docker, e instalarlas en el server, con los siguientes comandos: 
+## For the installation of QuarkID components, the steps are: 
+ 1)  Download the Docker Images, and install them on the server, with the following commands: 
 ````
  docker pull quarkid/api-proxy
  docker pull quarkid/api-zksync
@@ -242,7 +238,7 @@ sudo systemctl status docker
  docker pull mongo:latest
  ````
 
- 2) Verificar que las imágenes se hayan descargado
+ 2) Verify that the images have been downloaded
  ````
  docker image ls
 
@@ -252,32 +248,20 @@ sudo systemctl status docker
  ipfs/kubo latest 71f8fff78bb2 3 days ago 94.6MB
  mongo
 ````
-3) Crear el archivo docker-compose.yml con la siguiente configuracion. Deberá crear en testnet una cuenta y configurar en un address 
- y se le transfiere saldo para poder ejecutar las transacciones:
+3) Create the docker-compose.yml file with the following configuration. You should create an account in testnet and configure an address 
+ and transfer balance to it to be able to execute transactions:
 ````
  ACCOUNT_ADDRESS=****
  WALLET_PRIVATE_KEY=****
  ````
- Deberá configurar esos datos dentro del archivo.
+ You should configure this data within the file.
  
- Para crear el archivo:
+ To create the file:
 ````
  nano docker-compose.yml
 ````
-Paso 4:
- Luego ejecutar 
+Step 4:
+ Then execute 
 ````
 docker compose up
 ````
-## Licencia
-Derechos de autor © 2023 Gobierno de la Ciudad de Buenos Aires
-
-Licenciado bajo la Licencia Apache, Versión 2.0 (la "Licencia");
-usted no puede utilizar este archivo excepto en cumplimiento con la Licencia.
-Puede obtener una copia de la Licencia en
-http://www.apache.org/licenses/LICENSE-2.0.
-A menos que lo requiera la ley aplicable o se acuerde por escrito, el software
-distribuido bajo la Licencia se distribuye "TAL CUAL",
-SIN GARANTÍAS O CONDICIONES DE NINGÚN TIPO, ya sean expresas o implícitas.
-Consulte la Licencia para el idioma específico que rige los permisos y
-limitaciones bajo la Licencia.
