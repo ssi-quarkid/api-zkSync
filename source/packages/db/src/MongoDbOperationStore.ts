@@ -8,10 +8,10 @@ import {
   AnchoredOperationModel,
 } from '@quarkid-sidetree/common';
 /**
- * Sidetree operation stored in MongoDb.
+ * Sidetree operation stored in ferretdb.
  * Note: We use shorter property names such as "opIndex" instead of "operationIndex" to ensure unique index compatibility between MongoDB implementations.
  * Note: We represent txnNumber as long instead of number (double) to ensure large number compatibility
- *       (avoid floating point comparison quirks) between MongoDB implementations.
+ *       (avoid floating point comparison quirks) between ferretdb implementations.
  */
 interface IMongoOperation {
   didSuffix: string;
@@ -24,11 +24,11 @@ interface IMongoOperation {
 
 /**
  * Implementation of OperationStore that stores the operation data in
- * a MongoDB database.
+ * a ferretdb database.
  */
 export default class MongoDbOperationStore extends MongoDbStore
   implements IOperationStore {
-  /** MongoDB collection name under the database where the operations are stored. */
+  /** ferretdb collection name under the database where the operations are stored. */
   public static readonly collectionName: string = 'operations';
 
   constructor(serverUrl: string, databaseName: string) {
@@ -41,7 +41,7 @@ export default class MongoDbOperationStore extends MongoDbStore
       { didSuffix: 1, txnNumber: 1, opIndex: 1, type: 1 },
       { unique: true }
     );
-    // The query in `get()` method needs a corresponding composite index in some cloud-based services (CosmosDB 4.0) that supports MongoDB driver.
+    // The query in `get()` method needs a corresponding composite index in some cloud-based services (CosmosDB 4.0) that supports ferretdb driver.
     await this.collection.createIndex(
       { didSuffix: 1, txnNumber: 1, opIndex: 1 },
       { unique: true }
@@ -126,7 +126,7 @@ export default class MongoDbOperationStore extends MongoDbStore
 
   /**
    * Convert a Sidetree operation to a more minimal IMongoOperation object
-   * that can be stored on MongoDb. The IMongoOperation object has sufficient
+   * that can be stored on ferretdb. The IMongoOperation object has sufficient
    * information to reconstruct the original operation.
    */
   private static convertToMongoOperation(
@@ -143,7 +143,7 @@ export default class MongoDbOperationStore extends MongoDbStore
   }
 
   /**
-   * Convert a MongoDB representation of an operation to a Sidetree operation.
+   * Convert a ferretdb representation of an operation to a Sidetree operation.
    * Inverse of convertToMongoOperation() method above.
    *
    * Note: mongodb.find() returns an 'any' object that automatically converts longs to numbers -

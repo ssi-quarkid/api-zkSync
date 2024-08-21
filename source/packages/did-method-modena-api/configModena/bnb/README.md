@@ -3,7 +3,7 @@
 ## Prerequisites 
 
 - BNB Smart Chain (Private key needed)
-- Mongo DB
+- ferretdb
 - Docker - Docker Compose
 
 ---
@@ -24,7 +24,7 @@
 ```
 3) Go to the root directory and open `docker-compose-bnb.yml`. Make sure to do the following changes:
 - `RPC_URL` with the RPC endpoint of the node
-- `MONGO_DB_CONNECTION_STRING` with the url of the mongo database
+- `MONGO_DB_CONNECTION_STRING` with the url of the ferretdb database
 - `WALLET_PRIVATE_KEY` with the private key of your BNB Smart Chain wallet
 
 

@@ -2,7 +2,7 @@ import { Collection, Cursor, Db, Long, MongoClient } from 'mongodb';
 
 import { TransactionModel, Logger, ITransactionStore } from '@quarkid-sidetree/common';
 /**
- * Implementation of ITransactionStore that stores the transaction data in a MongoDB database.
+ * Implementation of ITransactionStore that stores the transaction data in a ferretdb database.
  */
 export default class MongoDbTransactionStore implements ITransactionStore {
   private client?: MongoClient;
@@ -15,7 +15,7 @@ export default class MongoDbTransactionStore implements ITransactionStore {
   private transactionCollection: Collection<any> | undefined;
 
   /**
-   * Initialize the MongoDB transaction store.
+   * Initialize the ferretdb transaction store.
    */
   public async initialize(
     serverUrl: string,
@@ -98,7 +98,7 @@ export default class MongoDbTransactionStore implements ITransactionStore {
    */
   public async clearCollection() {
     // NOTE: We avoid implementing this by deleting and recreating the collection in rapid succession,
-    // because doing so against some cloud MongoDB services such as CosmosDB,
+    // because doing so against some cloud ferretdb services such as CosmosDB,
     // especially in rapid repetition that can occur in tests, will lead to `MongoError: ns not found` connectivity error.
     await this.transactionCollection!.deleteMany({}); // Empty filter removes all entries in collection.
   }
@@ -107,7 +107,7 @@ export default class MongoDbTransactionStore implements ITransactionStore {
     try {
       const transactionInMongoDb = {
         anchorString: transaction.anchorString,
-        // NOTE: MUST force `transactionNumber` to be Int64 in MondoDB.
+        // NOTE: MUST force `transactionNumber` to be Int64 in ferretdb.
         transactionNumber: Long.fromNumber(transaction.transactionNumber),
         transactionTime: transaction.transactionTime,
         transactionTimeHash: transaction.transactionTimeHash,

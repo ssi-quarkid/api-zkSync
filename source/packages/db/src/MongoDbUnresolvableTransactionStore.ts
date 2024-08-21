@@ -8,7 +8,7 @@ import {
 } from '@quarkid-sidetree/common';
 
 /**
- * Implementation of `IUnresolvableTransactionStore` that stores the transaction data in a MongoDB database.
+ * Implementation of `IUnresolvableTransactionStore` that stores the transaction data in a ferretdb database.
  */
 export default class MongoDbUnresolvableTransactionStore
   implements IUnresolvableTransactionStore {

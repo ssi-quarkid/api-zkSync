@@ -94,8 +94,8 @@ Environment variables must be configured in [Source](/source/packages/did-method
 ### Database and CAS
 
 - CONTENT_ADDRESSABLE_STORE_SERVICE_URI: URI for the CAS, in this case an IPFS.
-- DATABASE_NAME: The name of the database to be used in MongoDB
-- MONGO_DB_CONNECTION_STRING: String to connect to the MongoDB database, it's the same used in compass.
+- DATABASE_NAME: The name of the database to be used in ferretdb
+- MONGO_DB_CONNECTION_STRING: String to connect to the ferretdb database, it's the same used in compass.
 - It's important to note that port 4001 must be open to synchronize with IPFS. If this port is not opened, the node will not be able to resolve identities that were created on another node.
 
 ### Ledger Configuration
@@ -163,8 +163,8 @@ sudo systemctl status podman.socket
 ````
 
 5. Docker-compose up
-Since the app doesn't have permission to create the database in mongo,
-create database in production mongo (and add path to mongo in the docker compose), "modena-zksync-testnet-v1"
+Since the app doesn't have permission to create the database in ferretdb,
+create database in production ferretdb (and add path to ferretdb in the docker compose), "modena-zksync-testnet-v1"
 
 ````
 /usr/local/bin/docker-compose -f docker-compose-zk-prod.yml up
@@ -235,7 +235,7 @@ sudo systemctl status docker
  docker pull quarkid/api-proxy
  docker pull quarkid/api-zksync
  docker pull ipfs/kubo:latest
- docker pull mongo:latest
+ docker pull ghcr.io/ferretdb/all-in-one
  ````
 
  2) Verify that the images have been downloaded
@@ -246,7 +246,7 @@ sudo systemctl status docker
  quarkid/api-proxy latest cb8941a6fbe4 16 hours ago 1.26GB
  quarkid/api-zksync latest 13e12acfd1c0 5 months ago 3.56GB
  ipfs/kubo latest 71f8fff78bb2 3 days ago 94.6MB
- mongo
+ ghcr.io/ferretdb/all-in-one
 ````
 3) Create the docker-compose.yml file with the following configuration. You should create an account in testnet and configure an address 
  and transfer balance to it to be able to execute transactions:

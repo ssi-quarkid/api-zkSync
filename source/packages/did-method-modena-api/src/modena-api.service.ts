@@ -147,7 +147,7 @@ function printAll(conf: ModenaNodeConfigs) {
   console.log(`CAS URI: ${conf.contentAddressableStoreServiceUri}`)
   console.log(`Db name: ${conf.databaseName}`)
   console.log(`ETH RCP: ${conf.rpcUrl}`)
-  console.log(`MongoDB: ${conf.mongoDbConnectionString}`)
+  console.log(`ferretdb: ${conf.mongoDbConnectionString}`)
 
   // Object.keys(conf.walletProviderConfigs).forEach(key =>
   //   [

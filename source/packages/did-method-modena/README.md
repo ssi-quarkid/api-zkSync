@@ -11,7 +11,7 @@ The Core needs 3 key components to be initialized:
 
 - A Ledger: To anchor the network, where new transactions will be emited and events will be listened to.
 
-- A Database: In this case a **MongoDB** database, to store all the fetched transactions and operations from the SideTree network
+- A Database: In this case a **ferretdb** database, to store all the fetched transactions and operations from the SideTree network
 
 - A CAS: In this case an **IPFS** node, where the network files will be stored to be synced to every node.
 
