@@ -23,7 +23,7 @@ services:
             - ACCOUNT_ADDRESS=0x2535412fA22D9ad83384D7Ab7b636DDA37eFA872
             - LEDGER_TYPE=zksync
     mongo:
-      image: mongo:5.0.15
+      image: ghcr.io/ferretdb/all-in-one
       restart: always
       expose:
         - 27017

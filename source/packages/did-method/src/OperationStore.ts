@@ -7,7 +7,7 @@ import {
 
 /**
  * Implementation of OperationStore that stores the operation data in
- * a MongoDB database.
+ * a ferretdb database.
  */
 export default class
   implements IOperationStore {

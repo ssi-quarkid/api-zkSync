@@ -24,7 +24,7 @@ Las configuraciones se pueden definir por medio de variables de entorno o modifi
 
 ## Requirimientos
 
-- Acceso a una base de datos MongoDB.
+- Acceso a una base de datos ferretdb.
 - Acceso a un proveedor de IPFS.
 - Un proveedor RPC para el Ledger.
 - Una Wallet en esa Ledger, se requieren fondos para escribir operaciones o para lanzar un nuevo anclaje.
@@ -47,9 +47,9 @@ Las configuraciones se pueden definir por medio de variables de entorno o modifi
 
 - **CONTENT_ADDRESSABLE_STORE_SERVICE_URI:** URI para el CAS, en este caso un IPFS.
 
-- **DATABASE_NAME:** El nombre de la base de datos que se usar en MongoDB
+- **DATABASE_NAME:** El nombre de la base de datos que se usar en ferretdb
 
-- **MONGO_DB_CONNECTION_STRING:** String para conectarse a la base de datos de MongoDB, es el mismo que se utiliza en compass.
+- **MONGO_DB_CONNECTION_STRING:** String para conectarse a la base de datos de ferretdb, es el mismo que se utiliza en compass.
 
 ### Configuración de Ledger
 

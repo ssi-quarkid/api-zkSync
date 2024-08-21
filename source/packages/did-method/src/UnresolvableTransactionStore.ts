@@ -6,14 +6,14 @@ import {
 } from '@quarkid-sidetree/common';
 
 /**
- * Implementation of `IUnresolvableTransactionStore` that stores the transaction data in a MongoDB database.
+ * Implementation of `IUnresolvableTransactionStore` that stores the transaction data in a ferretdb database.
  */
 export default class UnresolvableTransactionStore
   implements IUnresolvableTransactionStore {
 
 
   /**
-   * Initialize the MongoDB unresolvable transaction store.
+   * Initialize the ferretdb unresolvable transaction store.
    */
   public async initialize(): Promise<void> {
 

@@ -3,7 +3,7 @@ import MongoDbStore from './MongoDbStore';
 import { IServiceStateStore } from '@quarkid-sidetree/common';
 
 /**
- * Implementation of IServiceStateStore using MongoDB database.
+ * Implementation of IServiceStateStore using ferretdb database.
  */
 export default class MongoDbServiceStateStore<T> extends MongoDbStore
   implements IServiceStateStore<T> {

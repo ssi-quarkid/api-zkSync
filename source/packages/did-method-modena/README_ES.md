@@ -10,7 +10,7 @@ El Core necesita 3 componentes claves para ser inicializado:
 
 - Un Ledger: Para anclar la red, donde las nuevas transacciones realizadas y donde se escuchará a los eventos emitidos.
 
-- Una base de datos: En este caso una base **MongoDB**, donde se guardan todas las transacciones y operaciones obtenidas de la red Sidetree.
+- Una base de datos: En este caso una base **ferretdb**, donde se guardan todas las transacciones y operaciones obtenidas de la red Sidetree.
 
 - Un CAS: En este caso un nodo de **IPFS**, donde los archivos de la red van a estar guardados para que todos los nodos puedan sincronizarse.
 

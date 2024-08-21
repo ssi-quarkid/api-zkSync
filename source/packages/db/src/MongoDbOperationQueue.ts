@@ -8,7 +8,7 @@ import {
 } from '@quarkid-sidetree/common';
 
 /**
- * Sidetree operation stored in MongoDb.
+ * Sidetree operation stored in ferretdb.
  * Note: we use the shorter property name "opIndex" instead of "operationIndex" due to a constraint imposed by some MongoDB service such as CosmosDB 3.2:
  * the sum of property names of a unique index keys need to be less than 40 characters.
  * Note: We represent opIndex, transactionNumber, and transactionTime as long instead of number (double) to avoid some floating
@@ -20,7 +20,7 @@ interface IMongoQueuedOperation {
 }
 
 /**
- * Operation queue used by the Batch Writer implemented using MongoDB.
+ * Operation queue used by the Batch Writer implemented using ferretdb.
  */
 export default class MongoDbOperationQueue implements IOperationQueue {
   /** Collection name for queued operations. */
@@ -31,7 +31,7 @@ export default class MongoDbOperationQueue implements IOperationQueue {
   private db: Db | undefined;
 
   /**
-   * Initialize the MongoDB operation store.
+   * Initialize the ferretdb operation store.
    */
   public async initialize(serverUrl: string, databaseName: string) {
     const client = await MongoClient.connect(serverUrl);

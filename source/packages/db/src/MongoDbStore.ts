@@ -2,15 +2,15 @@ import { Collection, Db, MongoClient } from 'mongodb';
 import { Logger } from '@quarkid-sidetree/common';
 
 /**
- * Base class that contains the common MongoDB collection setup.
+ * Base class that contains the common ferretdb collection setup.
  */
 export default class MongoDbStore {
   public static readonly defaultQueryTimeoutInMilliseconds = 10000;
 
   private client?: MongoClient;
-  /** MondoDB instance. */
+  /** ferretdb instance. */
   protected db: Db | undefined;
-  /** MongoDB collection */
+  /** ferretdb collection */
   protected collection!: Collection<any>;
 
   /**
@@ -23,7 +23,7 @@ export default class MongoDbStore {
   ) { }
 
   /**
-   * Initialize the MongoDB transaction store.
+   * Initialize the ferretdb transaction store.
    */
   public async initialize(): Promise<void> {
     const client = await MongoClient.connect(this.serverUrl, {
@@ -42,7 +42,7 @@ export default class MongoDbStore {
    * Clears the store.
    * NOTE: Avoid dropping collection using `collection.drop()` and recreating the collection in rapid succession (such as in tests), because:
    * 1. It takes some time (seconds) for the collection be created again.
-   * 2. Some cloud MongoDB services such as CosmosDB will lead to `MongoError: ns not found` connectivity error.
+   * 2. Some cloud ferretdb services such as CosmosDB will lead to `MongoError: ns not found` connectivity error.
    */
   public async clearCollection() {
     await this.collection.deleteMany({}); // Empty filter removes all entries in collection.

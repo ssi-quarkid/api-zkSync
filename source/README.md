@@ -27,7 +27,7 @@ The configurations can be passed either through enviroment variables or their de
 Some examples can be found on ***/packages/did-method-modena-api/configModena***
 
 ## Requirements
-- Access to a MongoDB database
+- Access to a ferretdb database
 - Access to an IPFS provider
 - A RPC provider for your Ledger
 - A Wallet on the Ledger, for deploying a new anchor or to making any operations founds are required
@@ -46,8 +46,8 @@ Some examples can be found on ***/packages/did-method-modena-api/configModena***
 ### Database and CAS
 
 - **CONTENT_ADDRESSABLE_STORE_SERVICE_URI:** URI for your CAS, in most cases and IPFS.
-- **DATABASE_NAME:** The name of the mongodb database where the fetched data is gonna be stored
-- **MONGO_DB_CONNECTION_STRING:** String to connect to the MongoDB database, it's the same as the one used in compass
+- **DATABASE_NAME:** The name of the ferretdb database where the fetched data is gonna be stored
+- **MONGO_DB_CONNECTION_STRING:** String to connect to the ferretdb database, it's the same as the one used in compass
 
 
 ### Ledger configuration
